@@ -118,7 +118,6 @@ public class SnapshotCollectorWorker implements SnapshotCollector {
 			snapshot.setTotalMessages(sum);
 
 			//dodavanje snapshot-a u istoriju
-			AppConfig.addSnapshot(snapshot);
 			AppConfig.timestampedStandardPrint("System bitcake count: " + sum);
 
 			//Reset system

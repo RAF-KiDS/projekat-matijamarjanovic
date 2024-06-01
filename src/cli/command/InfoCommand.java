@@ -20,9 +20,6 @@ public class InfoCommand implements CLICommand {
 		
 		AppConfig.timestampedStandardPrint(neighbors);
 
-		if (!AppConfig.getSnapshots().isEmpty()){
-			AppConfig.timestampedStandardPrint(AppConfig.getSnapshots().size() + " snapshots made by " + AppConfig.snapshotInfo.getInitiatorId() + " last snapshotNo: "+ AppConfig.snapshotInfo.getSnapshotNo());
-		}
 	}
 
 }
