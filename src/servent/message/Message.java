@@ -1,10 +1,6 @@
 package servent.message;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import app.ServentInfo;
 
 /**
  * This is your basic message. It should cover most needs.
@@ -13,20 +9,14 @@ import app.ServentInfo;
  * 	<li>Basic attributes:<ul>
  * 		<li>Message ID - unique on a single servent.</li>
  * 		<li>Message type</li>
- * 		<li>Info about the initial message sender</li>
- * 		<li>Receiver info</li>
- * 		<li>Route list (constructed via <code>makeMeASender</code> )</li>
+ * 		<li>Sender port</li>
+ * 		<li>Receiver port</li>
+ * 		<li>Receiver IP address</li>
  * 		<li>Arbitrary message text</li>
  * 		</ul>
  * 	<li>Is serializable</li>
  * 	<li>Is immutable</li>
- * 	<li>Modification methods:<ul>
- * 		<li>makeMeASender - adds the current servent to the route list</li>
- * 		<li>changeReceiver - changes the receiver info attribute</li>
- * 		<li>IMPORTANT: if your subclass adds an attribute that you need copied,
- * 		and you want to use these methods, make sure to override them to include your attribute.</li>
- * 		</ul>
- * 	<li>Equality and hashability based on message id and original sender id</li>
+ * 	<li>Equality and hashability based on message id and original sender port</li>
  * </ul>
  * @author bmilojkovic
  *
@@ -34,27 +24,19 @@ import app.ServentInfo;
 public interface Message extends Serializable {
 
 	/**
-	 * Information about the original sender. If <code>makeMeASender</code> is invoked
-	 * on this object, this attribute will not be changed.
+	 * Port number on which the sender of this message listens for new messages. Use this to reply.
 	 */
-	ServentInfo getOriginalSenderInfo();
+	int getSenderPort();
 	
 	/**
-	 * If a servent uses <code>makeMeASender</code> when resending a message, it will
-	 * be added to this list. So we can use this to see how this message got to us.
+	 * Port number of the receiver of the message.
 	 */
-	List<ServentInfo> getRoute();
+	int getReceiverPort();
 	
 	/**
-	 * Information about the receiver of the message.
+	 * IP address of the receiver.
 	 */
-	ServentInfo getReceiverInfo();
-	
-	/**
-	 * Message color - white means that the message was sent before a local snapshot
-	 * was created, and red (non-white) means it is after.
-	 */
-	boolean isWhite();
+	String getReceiverIpAddress();
 	
 	/**
 	 * Message type. Mainly used to decide which handler will work on this message.
@@ -71,41 +53,5 @@ public interface Message extends Serializable {
 	 * in the system.
 	 */
 	int getMessageId();
-
-	/**
-	 * Alters the message and returns a new copy with everything intact, except
-	 * the current node being added to the route list.
-	 */
-	Message makeMeASender();
-	
-	/**
-	 * Alters the message and returns a new copy with everything intact, except
-	 * the receiver being changed to the one with the specified <code>id</code>.
-	 */
-	Message changeReceiver(Integer newReceiverId);
-	
-	/**
-	 * Alters the message and returns a new copy with everything intact, except
-	 * the color being changed to red.
-	 */
-	Message setRedColor();
-	
-	/**
-	 * Alters the message and returns a new copy with everything intact, except
-	 * the color being changed to white.
-	 */
-	Message setWhiteColor();
-
-	Message setInitiatorId(int initiatorId);
-
-	Message setSnapshotNo(int snapshotNo);
-	
-	/**
-	 * This method is invoked by the frameworks sender code. It is invoked
-	 * exactly before the message is being sent. If the message was held up
-	 * by an event or a queue, this ensures that we perform the effect as
-	 * we are sending the message.
-	 */
-	void sendEffect();
 
 }

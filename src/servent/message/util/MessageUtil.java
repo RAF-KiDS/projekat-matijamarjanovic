@@ -28,6 +28,7 @@ public class MessageUtil {
 	public static final boolean MESSAGE_UTIL_PRINTING = true;
 	
 	public static Message readMessage(Socket socket) {
+		
 		Message clientMessage = null;
 			
 		try {

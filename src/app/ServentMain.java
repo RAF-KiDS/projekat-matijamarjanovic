@@ -1,12 +1,7 @@
 package app;
 
-import app.snapshot_bitcake.SnapshotCollector;
-import app.snapshot_bitcake.SnapshotCollectorWorker;
 import cli.CLIParser;
 import servent.SimpleServentListener;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Describes the procedure for starting a single Servent
@@ -30,8 +25,6 @@ public class ServentMain {
 		
 		String serventListFile = args[0];
 		
-		AppConfig.readConfig(serventListFile);
-		
 		try {
 			serventId = Integer.parseInt(args[1]);
 		} catch (NumberFormatException e) {
@@ -39,12 +32,7 @@ public class ServentMain {
 			System.exit(0);
 		}
 		
-		if (serventId >= AppConfig.getServentCount()) {
-			AppConfig.timestampedErrorPrint("Invalid servent id provided");
-			System.exit(0);
-		}
-		
-		AppConfig.myServentInfo = AppConfig.getInfoById(serventId);
+		AppConfig.readConfig(serventListFile, serventId);
 		
 		try {
 			portNumber = AppConfig.myServentInfo.getListenerPort();
@@ -58,21 +46,18 @@ public class ServentMain {
 		}
 		
 		AppConfig.timestampedStandardPrint("Starting servent " + AppConfig.myServentInfo);
-
-		SnapshotCollector snapshotCollector;
-		snapshotCollector = new SnapshotCollectorWorker();
-		Thread snapshotCollectorThread = new Thread(snapshotCollector);
-		snapshotCollectorThread.start();
-
-
-		SimpleServentListener simpleListener = new SimpleServentListener(snapshotCollector);
+		
+		SimpleServentListener simpleListener = new SimpleServentListener();
 		Thread listenerThread = new Thread(simpleListener);
 		listenerThread.start();
-
-
-		CLIParser cliParser = new CLIParser(simpleListener, snapshotCollector);
+		
+		CLIParser cliParser = new CLIParser(simpleListener);
 		Thread cliThread = new Thread(cliParser);
 		cliThread.start();
-
+		
+		ServentInitializer serventInitializer = new ServentInitializer();
+		Thread initializerThread = new Thread(serventInitializer);
+		initializerThread.start();
+		
 	}
 }

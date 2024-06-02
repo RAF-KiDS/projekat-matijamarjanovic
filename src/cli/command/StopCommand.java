@@ -1,7 +1,6 @@
 package cli.command;
 
 import app.AppConfig;
-import app.snapshot_bitcake.SnapshotCollector;
 import cli.CLIParser;
 import servent.SimpleServentListener;
 
@@ -9,13 +8,10 @@ public class StopCommand implements CLICommand {
 
 	private CLIParser parser;
 	private SimpleServentListener listener;
-	private SnapshotCollector snapshotCollector;
 	
-	public StopCommand(CLIParser parser, SimpleServentListener listener,
-			SnapshotCollector snapshotCollector) {
+	public StopCommand(CLIParser parser, SimpleServentListener listener) {
 		this.parser = parser;
 		this.listener = listener;
-		this.snapshotCollector = snapshotCollector;
 	}
 	
 	@Override
@@ -28,7 +24,6 @@ public class StopCommand implements CLICommand {
 		AppConfig.timestampedStandardPrint("Stopping...");
 		parser.stop();
 		listener.stop();
-		snapshotCollector.stop();
 	}
 
 }

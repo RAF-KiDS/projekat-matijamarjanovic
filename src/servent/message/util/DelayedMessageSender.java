@@ -2,14 +2,10 @@ package servent.message.util;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 
 import app.AppConfig;
-import app.ServentInfo;
 import servent.message.Message;
-import servent.message.MessageType;
 
 /**
  * This worker sends a message asynchronously. Doing this in a separate thread
@@ -36,36 +32,19 @@ public class DelayedMessageSender implements Runnable {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-		ServentInfo receiverInfo = messageToSend.getReceiverInfo();
 		
 		if (MessageUtil.MESSAGE_UTIL_PRINTING) {
 			AppConfig.timestampedStandardPrint("Sending message " + messageToSend);
 		}
 		
 		try {
-			/*
-			 * Similar sync block to the one in FifoSenderWorker, except this one is
-			 * related to Lai-Yang. We want to be sure that message color is red if we
-			 * are red. Just setting the attribute when we were making the message may
-			 * have been to early.
-			 * All messages that declare their own stuff (eg. LYTellMessage) will have
-			 * to override setRedColor() because of this.
-			 */
-			synchronized (AppConfig.colorLock) {
-				if (AppConfig.isWhite.get() == false) {
-					messageToSend = messageToSend.setRedColor();
-				}
-
-				Socket sendSocket = new Socket(receiverInfo.getIpAddress(), receiverInfo.getListenerPort());
-
-				ObjectOutputStream oos = new ObjectOutputStream(sendSocket.getOutputStream());
-				oos.writeObject(messageToSend);
-				oos.flush();
-				
-				sendSocket.close();
-
-				messageToSend.sendEffect();
-			}
+			Socket sendSocket = new Socket(messageToSend.getReceiverIpAddress(), messageToSend.getReceiverPort());
+			
+			ObjectOutputStream oos = new ObjectOutputStream(sendSocket.getOutputStream());
+			oos.writeObject(messageToSend);
+			oos.flush();
+			
+			sendSocket.close();
 		} catch (IOException e) {
 			AppConfig.timestampedErrorPrint("Couldn't send message: " + messageToSend.toString());
 		}
