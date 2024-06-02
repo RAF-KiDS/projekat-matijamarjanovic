@@ -9,8 +9,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import servent.message.AskGetMessage;
+import servent.message.BasicMessage;
 import servent.message.PutMessage;
 import servent.message.WelcomeMessage;
 import servent.message.util.MessageUtil;
@@ -52,8 +54,15 @@ public class ChordState {
 	
 	//we DO NOT use this to send messages, but only to construct the successor table
 	private List<ServentInfo> allNodeInfo;
-	
+	private List<ServentInfo> quorum;
 	private Map<Integer, Integer> valueMap;
+
+	private Map<Integer, Boolean> quorumResponses;
+
+	//kada je true znaci da je prosla provera za kvorum, nakon izvrsavanja CS postavlja se na false do prolaska sledece provere
+	private boolean checkCleared;
+
+	private final Integer lockKey = -8;
 	
 	public ChordState() {
 		this.chordLevel = 1;
@@ -74,6 +83,10 @@ public class ChordState {
 		predecessorInfo = null;
 		valueMap = new HashMap<>();
 		allNodeInfo = new ArrayList<>();
+		quorum = new ArrayList<>();
+
+		quorumResponses = new ConcurrentHashMap<>();
+		checkCleared = false;
 	}
 	
 	/**
@@ -85,6 +98,9 @@ public class ChordState {
 		//set a temporary pointer to next node, for sending of update message
 		successorTable[0] = new ServentInfo("localhost", welcomeMsg.getSenderPort());
 		this.valueMap = welcomeMsg.getValues();
+		//dodaj u valueMap vrednost za proveru locka, key uvek -8
+		//0 ako je otkljucano, 1 ako je zakljucano
+		this.valueMap.put(lockKey, 0);
 		
 		//tell bootstrap this node is not a collider
 		try {
@@ -101,7 +117,19 @@ public class ChordState {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public boolean isCheckCleared() {
+		return checkCleared;
+	}
+
+	public void setCheckCleared(boolean checkCleared) {
+		this.checkCleared = checkCleared;
+	}
+
+	public Map<Integer, Boolean> getQuorumResponses() {
+		return quorumResponses;
+	}
+
 	public int getChordLevel() {
 		return chordLevel;
 	}
@@ -306,6 +334,56 @@ public class ChordState {
 		}
 		
 		updateSuccessorTable();
+		createQuorum();
+
+	}
+	private void createQuorum() {
+		quorum.clear();
+		quorum.add(AppConfig.myServentInfo);
+
+		for (int i = 0; i < successorTable.length; i++) {
+			quorum.add(successorTable[i]);
+		}
+
+		int predIndex = allNodeInfo.indexOf(predecessorInfo);
+
+		//dodavanje svih prethodnika do 0 da bi kvorum bio sto veci
+		for (int i = 0; i < successorTable.length; i++) {
+			int index = (predIndex - i + allNodeInfo.size()) % allNodeInfo.size();
+			if (index >= 0 && index < allNodeInfo.size()) {
+				quorum.add(allNodeInfo.get(index));
+			}
+		}
+
+	}
+
+	public List<ServentInfo> getQuorum() {
+		return quorum;
+	}
+
+	public Integer getQuorumSize() {
+		return quorum.size();
+	}
+
+	public void lock(){
+		valueMap.put(lockKey, 1);
+	}
+
+	public void unlock(){
+		valueMap.put(lockKey, 0);
+	}
+
+	public boolean isLocked(){
+		return valueMap.get(lockKey) == 1;
+	}
+
+	// Methods for handling mutual exclusion requests and releases
+	public void requestCriticalSection() {
+		// Implement request logic here
+	}
+
+	public void releaseCriticalSection() {
+		// Implement release logic here
 	}
 
 	/**
