@@ -1,0 +1,4 @@
+pause 35000
+dht_get 2
+pause 60000
+stop

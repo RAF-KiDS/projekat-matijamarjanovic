@@ -65,7 +65,7 @@ public class MultipleServentStarter {
 	private static void startServentTest(String testName) {
 		List<Process> serventProcesses = new ArrayList<>();
 		
-		AppConfig.readConfig(testName+"/servent_list.properties", 0);
+		AppConfig.readConfig(testName+"/properties/servent_list.properties", 0);
 		
 		AppConfig.timestampedStandardPrint("Starting multiple servent runner. "
 				+ "If servents do not finish on their own, type \"stop\" to finish them");
@@ -91,7 +91,7 @@ public class MultipleServentStarter {
 		for(int i = 0; i < serventCount; i++) {
 			try {
 				ProcessBuilder builder = new ProcessBuilder("java", "-cp", "target\\classes", "app.ServentMain",
-						testName+"/servent_list.properties", String.valueOf(i));
+						testName+"/properties/servent_list.properties", String.valueOf(i), testName+"/properties/servent" + i + ".properties");
 				
 				//We use files to read and write.
 				//System.out, System.err and System.in will point to these files.

@@ -16,7 +16,7 @@ public class ServentMain {
 	 * 1 - this servent's id
 	 */
 	public static void main(String[] args) {
-		if (args.length != 2) {
+		if (args.length != 3) {
 			AppConfig.timestampedErrorPrint("Please provide servent list file and id of this servent.");
 		}
 		
@@ -24,6 +24,7 @@ public class ServentMain {
 		int portNumber = -1;
 		
 		String serventListFile = args[0];
+		String serventFile = args[2];
 		
 		try {
 			serventId = Integer.parseInt(args[1]);
@@ -33,6 +34,7 @@ public class ServentMain {
 		}
 		
 		AppConfig.readConfig(serventListFile, serventId);
+		AppConfig.readNodeConfig(serventFile, serventId);
 		
 		try {
 			portNumber = AppConfig.myServentInfo.getListenerPort();

@@ -1,0 +1,7 @@
+01:44:41 - Starting servent [56|localhost|1240]
+01:44:41 - Pausing for 100000 ms
+01:44:41 - Sending message [56|1240|0||NEW_NODE|1180|44]
+01:45:01 - Got message [0|1280|7||WELCOME|1240|56]
+01:45:03 - Sending message [56|1240|1||UPDATE|1280|0]
+01:45:09 - Got message [56|1240|81|1280,1100,1120,1140,1160,1180|UPDATE|1240|56]
+01:46:21 - Stopping...

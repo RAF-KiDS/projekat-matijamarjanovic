@@ -1,50 +1,47 @@
-22:59:46 - Starting servent [48|localhost|1200]
-22:59:46 - Pausing for 30000 ms
-22:59:47 - Sending message [48|1200|0||NEW_NODE|1105|13]
-22:59:48 - Got message [13|1105|0||WELCOME|1200|48]
-22:59:49 - Sending message [48|1200|1||UPDATE|1105|13]
-22:59:50 - Got message [48|1200|1|1105|UPDATE|1200|48]
-22:59:54 - Got message [4|1300|3|1105|UPDATE|1200|48]
-22:59:55 - Sending message [4|1300|2|1105,1200|UPDATE|1300|4]
-22:59:57 - Got message [24|1400|0||NEW_NODE|1200|48]
-22:59:59 - Sending message [48|1200|3||WELCOME|1400|24]
-23:00:00 - Got message [24|1400|1||UPDATE|1200|48]
-23:00:01 - Sending message [24|1400|4|1200|UPDATE|1300|4]
-23:00:02 - Got message [44|1500|0||NEW_NODE|1200|48]
-23:00:03 - Sending message [48|1200|5||WELCOME|1500|44]
-23:00:03 - Got message [44|1500|1||UPDATE|1200|48]
-23:00:04 - Sending message [44|1500|6|1200|UPDATE|1300|4]
-23:00:08 - Got message [44|1500|2||QUORUM_REQUEST|1200|48]
-23:00:14 - Got message [44|1500|4|2:5|PUT|1200|48]
-23:00:14 - Got message [44|1500|5||QUORUM_REQUEST|1200|48]
-23:00:15 - Sending message [48|1200|7|2:5|PUT|1300|4]
-23:00:16 - --------Requesting critical section...
-23:00:16 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[48|localhost|1200], [4|localhost|1300], [44|localhost|1500]]
-23:00:17 - Sending message [48|1200|8||QUORUM_REQUEST|1300|4]
-23:00:17 - Sending message [48|1200|9||QUORUM_REQUEST|1500|44]
-23:00:18 - Got message [4|1300|6|LOCKED|QUORUM_RESPONSE|1200|48]
-23:00:18 - Got message [44|1500|7|UNLOCKED|QUORUM_RESPONSE|1200|48]
-23:00:19 - ==============All responses received, checking...==============
-23:00:19 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[48|localhost|1200], [4|localhost|1300], [44|localhost|1500]]
-23:00:19 - Sending message [48|1200|11||QUORUM_REQUEST|1500|44]
-23:00:19 - Got message [44|1500|8||QUORUM_REQUEST|1200|48]
-23:00:19 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: true
-23:00:20 - Got message [44|1500|10|UNLOCKED|QUORUM_RESPONSE|1200|48]
-23:00:20 - Sending message [48|1200|10||QUORUM_REQUEST|1300|4]
-23:00:21 - Sending message [48|1200|12|UNLOCKED|QUORUM_RESPONSE|1500|44]
-23:00:21 - Got message [4|1300|7|LOCKED|QUORUM_RESPONSE|1200|48]
-23:00:21 - ==============All responses received, checking...==============
-23:00:21 - --------Critical section starting...
-23:00:21 - Please wait...
-23:00:21 - --------Critical section ending...
-23:00:21 - Pausing for 15000 ms
-23:00:22 - Got message [44|1500|11||QUORUM_REQUEST|1200|48]
-23:00:22 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: false
-23:00:22 - Sending message [48|1200|14|LOCKED|QUORUM_RESPONSE|1500|44]
-23:00:22 - Sending message [48|1200|13|2|ASK_GET|1300|4]
-23:00:23 - Got message [4|1300|8|2:5|TELL_GET|1200|48]
-23:00:23 - 2:5
-23:00:23 - Got message [44|1500|13||QUORUM_REQUEST|1200|48]
-23:00:23 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: false
-23:00:24 - Sending message [48|1200|15|LOCKED|QUORUM_RESPONSE|1500|44]
-23:00:36 - Stopping...
+01:44:11 - Starting servent [32|localhost|1120]
+01:44:11 - Pausing for 30000 ms
+01:44:12 - Sending message [32|1120|0||NEW_NODE|1100|28]
+01:44:12 - Got message [28|1100|0||WELCOME|1120|32]
+01:44:14 - Sending message [32|1120|1||UPDATE|1100|28]
+01:44:15 - Got message [32|1120|1|1100|UPDATE|1120|32]
+01:44:16 - Got message [36|1140|0||NEW_NODE|1120|32]
+01:44:18 - Sending message [36|1140|2||NEW_NODE|1100|28]
+01:44:20 - Got message [36|1140|3|1100|UPDATE|1120|32]
+01:44:21 - Got message [40|1160|0||NEW_NODE|1120|32]
+01:44:21 - Sending message [36|1140|3|1100,1120|UPDATE|1140|36]
+01:44:22 - Sending message [40|1160|4||NEW_NODE|1140|36]
+01:44:26 - Got message [40|1160|5|1100|UPDATE|1120|32]
+01:44:28 - Sending message [40|1160|5|1100,1120|UPDATE|1140|36]
+01:44:31 - Got message [28|1100|6||QUORUM_REQUEST|1120|32]
+01:44:32 - Got message [48|1200|0||NEW_NODE|1120|32]
+01:44:32 - Sending message [32|1120|6|LOCKED|QUORUM_RESPONSE|1100|28]
+01:44:33 - Sending message [48|1200|7||NEW_NODE|1160|40]
+01:44:34 - Got message [28|1100|8||QUORUM_REQUEST|1120|32]
+01:44:35 - Sending message [32|1120|8|LOCKED|QUORUM_RESPONSE|1100|28]
+01:44:41 - --------Requesting critical section...
+01:44:42 - Sending message [32|1120|9||QUORUM_REQUEST|1140|36]
+01:44:42 - Sending message [32|1120|10||QUORUM_REQUEST|1100|28]
+01:44:42 - Got message [28|1100|10|LOCKED|QUORUM_RESPONSE|1120|32]
+01:44:43 - Got message [36|1140|5|LOCKED|QUORUM_RESPONSE|1120|32]
+01:44:44 - Sending message [32|1120|11||QUORUM_REQUEST|1140|36]
+01:44:44 - Sending message [32|1120|12||QUORUM_REQUEST|1100|28]
+01:44:45 - Got message [36|1140|6|LOCKED|QUORUM_RESPONSE|1120|32]
+01:44:45 - Got message [28|1100|11|LOCKED|QUORUM_RESPONSE|1120|32]
+01:44:45 - --------Critical section starting...
+01:44:45 - Please wait...
+01:44:45 - --------Critical section ending...
+01:44:45 - Pausing for 100000 ms
+01:44:47 - Sending message [32|1120|13|2|ASK_GET|1140|36]
+01:44:55 - Got message [0|1280|13|1100|UPDATE|1120|32]
+01:44:56 - Sending message [0|1280|14|1100,1120|UPDATE|1140|36]
+01:45:01 - Got message [28|1100|14|2:5|TELL_GET|1120|32]
+01:45:01 - 2:5
+01:45:04 - Got message [52|1220|17|1280,1100|UPDATE|1120|32]
+01:45:05 - Got message [56|1240|19|1280,1100|UPDATE|1120|32]
+01:45:05 - Got message [60|1260|18|1280,1100|UPDATE|1120|32]
+01:45:06 - Sending message [52|1220|15|1280,1100,1120|UPDATE|1140|36]
+01:45:06 - Sending message [56|1240|16|1280,1100,1120|UPDATE|1140|36]
+01:45:06 - Sending message [60|1260|17|1280,1100,1120|UPDATE|1140|36]
+01:45:18 - Got message [48|1200|21|1220,1260,1280,1100|UPDATE|1120|32]
+01:45:18 - Sending message [48|1200|18|1220,1260,1280,1100,1120|UPDATE|1140|36]
+01:46:25 - Stopping...

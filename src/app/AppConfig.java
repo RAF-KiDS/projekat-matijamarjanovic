@@ -19,6 +19,12 @@ public class AppConfig {
 	 * Convenience access for this servent's information
 	 */
 	public static ServentInfo myServentInfo;
+
+
+	private static String bsIpAdress;
+	private static String root;
+	private static int sft;
+	private static int hft;
 	
 	/**
 	 * Print a message to stdout with a timestamp
@@ -103,19 +109,60 @@ public class AppConfig {
 			timestampedErrorPrint("Problem reading chord_size. Must be a number that is a power of 2. Exiting...");
 			System.exit(0);
 		}
-		
-		String portProperty = "servent"+serventId+".port";
-		
+	}
+
+
+	public static void readNodeConfig(String configName, int serventId){
+		Properties properties = new Properties();
+
+		try {
+			properties.load(new FileInputStream(new File(configName)));
+		} catch (IOException e) {
+			timestampedErrorPrint("Couldn't open properties file. Exiting...");
+			System.exit(0);
+		}
+		String portProperty = "port";
+
+
 		int serventPort = -1;
-		
+
 		try {
 			serventPort = Integer.parseInt(properties.getProperty(portProperty));
 		} catch (NumberFormatException e) {
 			timestampedErrorPrint("Problem reading " + portProperty + ". Exiting...");
 			System.exit(0);
 		}
-		
+
+		try {
+			root = properties.getProperty("root");
+		} catch (NumberFormatException e) {
+			timestampedErrorPrint("Problem reading root : " + root + ". Exiting...");
+			System.exit(0);
+		}
+
+		try {
+			bsIpAdress = properties.getProperty("bs");
+		} catch (NumberFormatException e) {
+			timestampedErrorPrint("Problem reading bootstrap info : " + root + ". Exiting...");
+			System.exit(0);
+		}
+
+		try {
+			sft = Integer.parseInt(properties.getProperty("sft"));
+		} catch (NumberFormatException e) {
+			timestampedErrorPrint("Problem reading soft failure threshold : " + sft + ". Exiting...");
+			System.exit(0);
+		}
+
+		try {
+			hft = Integer.parseInt(properties.getProperty("hft"));
+		} catch (NumberFormatException e) {
+			timestampedErrorPrint("Problem reading hard failure threshold: " + hft + ". Exiting...");
+			System.exit(0);
+		}
+
 		myServentInfo = new ServentInfo("localhost", serventPort);
 	}
+
 	
 }

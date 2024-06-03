@@ -1,0 +1,29 @@
+01:44:36 - Starting servent [52|localhost|1220]
+01:44:36 - Pausing for 35000 ms
+01:44:37 - Sending message [52|1220|0||NEW_NODE|1140|36]
+01:45:01 - Got message [0|1280|3||WELCOME|1220|52]
+01:45:02 - Sending message [52|1220|1||UPDATE|1280|0]
+01:45:09 - Got message [52|1220|82|1280,1100,1120,1140,1160,1180|UPDATE|1220|52]
+01:45:09 - Got message [60|1260|83|1280,1100,1120,1140,1160,1180|UPDATE|1220|52]
+01:45:10 - Got message [48|1200|84||NEW_NODE|1220|52]
+01:45:10 - Sending message [60|1260|2|1280,1100,1120,1140,1160,1180,1220|UPDATE|1260|60]
+01:45:11 - --------Requesting critical section...
+01:45:11 - Sending message [52|1220|3||WELCOME|1200|48]
+01:45:11 - Sending message [52|1220|5||QUORUM_REQUEST|1180|44]
+01:45:12 - Sending message [52|1220|4||QUORUM_REQUEST|1260|60]
+01:45:12 - Got message [60|1260|2|LOCKED|QUORUM_RESPONSE|1220|52]
+01:45:12 - Got message [48|1200|1||UPDATE|1220|52]
+01:45:12 - Got message [44|1180|85|LOCKED|QUORUM_RESPONSE|1220|52]
+01:45:13 - Sending message [52|1220|7||QUORUM_REQUEST|1260|60]
+01:45:14 - Sending message [52|1220|8||QUORUM_REQUEST|1200|48]
+01:45:14 - Sending message [48|1200|6|1220|UPDATE|1260|60]
+01:45:14 - Got message [60|1260|3|LOCKED|QUORUM_RESPONSE|1220|52]
+01:45:15 - Got message [48|1200|2|LOCKED|QUORUM_RESPONSE|1220|52]
+01:45:15 - --------Critical section starting...
+01:45:15 - Please wait...
+01:45:15 - --------Critical section ending...
+01:45:15 - Pausing for 60000 ms
+01:45:16 - Sending message [52|1220|9|2|ASK_GET|1260|60]
+01:45:18 - Got message [28|1100|22|2:5|TELL_GET|1220|52]
+01:45:18 - 2:5
+01:46:15 - Stopping...

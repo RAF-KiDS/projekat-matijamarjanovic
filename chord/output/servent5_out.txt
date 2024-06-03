@@ -1,0 +1,9 @@
+01:44:31 - Starting servent [48|localhost|1200]
+01:44:31 - Pausing for 100000 ms
+01:44:32 - Sending message [48|1200|0||NEW_NODE|1120|32]
+01:45:11 - Got message [52|1220|3||WELCOME|1200|48]
+01:45:12 - Sending message [48|1200|1||UPDATE|1220|52]
+01:45:14 - Got message [52|1220|8||QUORUM_REQUEST|1200|48]
+01:45:15 - Sending message [48|1200|2|LOCKED|QUORUM_RESPONSE|1220|52]
+01:45:22 - Got message [48|1200|86|1220,1260,1280,1100,1120,1140,1160,1180|UPDATE|1200|48]
+01:46:11 - Stopping...

@@ -1,0 +1,15 @@
+01:44:46 - Starting servent [60|localhost|1260]
+01:44:46 - Pausing for 100000 ms
+01:44:47 - Sending message [60|1260|0||NEW_NODE|1140|36]
+01:45:02 - Got message [0|1280|8||WELCOME|1260|60]
+01:45:03 - Sending message [60|1260|1||UPDATE|1280|0]
+01:45:10 - Got message [60|1260|2|1280,1100,1120,1140,1160,1180,1220|UPDATE|1260|60]
+01:45:12 - Got message [52|1220|4||QUORUM_REQUEST|1260|60]
+01:45:12 - Sending message [60|1260|2|LOCKED|QUORUM_RESPONSE|1220|52]
+01:45:13 - Got message [52|1220|7||QUORUM_REQUEST|1260|60]
+01:45:14 - Got message [48|1200|6|1220|UPDATE|1260|60]
+01:45:14 - Sending message [60|1260|3|LOCKED|QUORUM_RESPONSE|1220|52]
+01:45:15 - Sending message [48|1200|4|1220,1260|UPDATE|1280|0]
+01:45:16 - Got message [52|1220|9|2|ASK_GET|1260|60]
+01:45:17 - Sending message [52|1220|5|2|ASK_GET|1280|0]
+01:46:26 - Stopping...

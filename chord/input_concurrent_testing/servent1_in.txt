@@ -1,4 +1,4 @@
 pause 30000
 dht_get 2
-pause 15000
+pause 100000
 stop

@@ -11,6 +11,8 @@ import servent.message.util.MessageUtil;
 
 public class ServentInitializer implements Runnable {
 
+
+
 	private int getSomeServentPort() {
 		int bsPort = AppConfig.BOOTSTRAP_PORT;
 		
