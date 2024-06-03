@@ -39,6 +39,7 @@ public class AskGetHandler implements MessageHandler {
 					AskGetMessage agm = new AskGetMessage(clientMessage.getSenderPort(), nextNode.getListenerPort(), clientMessage.getMessageText());
 					MessageUtil.sendMessage(agm);
 				}
+
 			} catch (NumberFormatException e) {
 				AppConfig.timestampedErrorPrint("Got ask get with bad text: " + clientMessage.getMessageText());
 			}

@@ -1,14 +1,33 @@
-14:38:01 - Starting servent [24|localhost|1400]
-14:38:01 - Pausing for 20000 ms
-14:38:03 - Sending message [24|1400|0||NEW_NODE|1300|4]
-14:38:04 - Got message [28|1100|4||WELCOME|1400|24]
-14:38:06 - Sending message [24|1400|1||UPDATE|1100|28]
-14:38:09 - Got message [24|1400|3|1100,1200,1300|UPDATE|1400|24]
-14:38:16 - Got message [0|1600|5|1300|UPDATE|1400|24]
-14:38:16 - Sending message [0|1600|2|1300,1400|UPDATE|1100|28]
-14:38:21 - Pausing for 10000 ms
-14:38:22 - Got message [0|1600|2|25:3|PUT|1400|24]
-14:38:23 - Sending message [24|1400|3|25:3|PUT|1100|28]
-14:38:26 - Got message [0|1600|4|25|ASK_GET|1400|24]
-14:38:27 - Sending message [0|1600|4|25|ASK_GET|1100|28]
-14:38:31 - Stopping...
+22:59:56 - Starting servent [24|localhost|1400]
+22:59:56 - Pausing for 30000 ms
+22:59:57 - Sending message [24|1400|0||NEW_NODE|1200|48]
+22:59:59 - Got message [48|1200|3||WELCOME|1400|24]
+23:00:00 - Sending message [24|1400|1||UPDATE|1200|48]
+23:00:02 - Got message [24|1400|4|1200,1300,1105|UPDATE|1400|24]
+23:00:06 - Got message [44|1500|5|1200,1300,1105|UPDATE|1400|24]
+23:00:07 - Sending message [44|1500|2|1200,1300,1105,1400|UPDATE|1500|44]
+23:00:07 - Got message [13|1105|6||QUORUM_REQUEST|1400|24]
+23:00:07 - >>>>>>>>>>>>>>Received quorum request from: 1105. Lock status: false
+23:00:08 - Sending message [24|1400|3|LOCKED|QUORUM_RESPONSE|1105|13]
+23:00:08 - Got message [44|1500|3||QUORUM_REQUEST|1400|24]
+23:00:08 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: false
+23:00:09 - Sending message [24|1400|4|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:09 - Got message [13|1105|8||QUORUM_REQUEST|1400|24]
+23:00:09 - >>>>>>>>>>>>>>Received quorum request from: 1105. Lock status: false
+23:00:11 - Sending message [24|1400|5|LOCKED|QUORUM_RESPONSE|1105|13]
+23:00:12 - Got message [13|1105|10|2:5|PUT|1400|24]
+23:00:12 - Sending message [24|1400|6|2:5|PUT|1500|44]
+23:00:14 - Got message [44|1500|6||QUORUM_REQUEST|1400|24]
+23:00:14 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: false
+23:00:15 - Sending message [24|1400|7|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:19 - Got message [44|1500|9||QUORUM_REQUEST|1400|24]
+23:00:19 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: false
+23:00:20 - Sending message [24|1400|8|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:22 - Got message [44|1500|12||QUORUM_REQUEST|1400|24]
+23:00:22 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: false
+23:00:23 - Sending message [24|1400|9|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:24 - Got message [44|1500|14||QUORUM_REQUEST|1400|24]
+23:00:24 - >>>>>>>>>>>>>>Received quorum request from: 1500. Lock status: false
+23:00:25 - Sending message [24|1400|10|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:26 - Pausing for 10000 ms
+23:00:36 - Stopping...

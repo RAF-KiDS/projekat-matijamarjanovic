@@ -18,6 +18,8 @@ import servent.handler.SorryHandler;
 import servent.handler.TellGetHandler;
 import servent.handler.UpdateHandler;
 import servent.handler.WelcomeHandler;
+import servent.handler.quorumHandlers.QuorumRequestHandler;
+import servent.handler.quorumHandlers.QuorumResponseHandler;
 import servent.message.Message;
 import servent.message.util.MessageUtil;
 
@@ -86,6 +88,12 @@ public class SimpleServentListener implements Runnable, Cancellable {
 					break;
 				case TELL_GET:
 					messageHandler = new TellGetHandler(clientMessage);
+					break;
+				case QUORUM_REQUEST:
+					messageHandler = new QuorumRequestHandler(clientMessage);
+					break;
+				case QUORUM_RESPONSE:
+					messageHandler = new QuorumResponseHandler(clientMessage);
 					break;
 				case POISON:
 					break;

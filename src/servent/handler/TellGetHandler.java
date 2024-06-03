@@ -24,6 +24,8 @@ public class TellGetHandler implements MessageHandler {
 					if (value == -1) {
 						AppConfig.timestampedStandardPrint("No such key: " + key);
 					} else {
+						AppConfig.timestampedErrorPrint("Got <" + key + "," +
+								((clientMessage.getMessageText().split(":").length>1) ? clientMessage.getMessageText().split(":")[1]:"") + ">");
 						AppConfig.timestampedStandardPrint(clientMessage.getMessageText());
 					}
 				} catch (NumberFormatException e) {

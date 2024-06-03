@@ -8,6 +8,7 @@ import servent.message.quorumMessages.QuorumResponseMessage;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class QuorumResponseHandler implements MessageHandler {
 
@@ -28,8 +29,7 @@ public class QuorumResponseHandler implements MessageHandler {
                 AppConfig.chordState.getQuorumResponses().put(responseMessage.getSenderPort(), false);
 
             if(checkAllResponses()) {
-                AppConfig.chordState.setCheckCleared(true);
-                AppConfig.chordState.getQuorumResponses().clear();
+                AppConfig.chordState.setCheckCleared(new AtomicBoolean(true));
             }
         } else {
             AppConfig.timestampedErrorPrint("Quorum response handler got a message that is not QUORUM_RESPONSE");
@@ -39,26 +39,18 @@ public class QuorumResponseHandler implements MessageHandler {
 
     private boolean checkAllResponses() {
         //cekaj dok ne dobijes sve odgovore
-        while(AppConfig.chordState.getQuorumResponses().size() < AppConfig.chordState.getQuorumSize()) {
+        while(AppConfig.chordState.getQuorumResponses().size() >= AppConfig.chordState.getQuorumSize() - 1) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
         if (AppConfig.chordState.getQuorumResponses().values().contains(false))
             return false;
 
         return true;
     }
 
-    /**
-     * Enters the critical section if all responses indicate that the lock is available.
-     *
-     * @param key The key for which the critical section is entered.
-     */
-    private void enterCriticalSection(int key) {
-        AppConfig.timestampedStandardPrint("Entering critical section for key " + key);
-        // Perform critical section operations here...
-    }
 }

@@ -12,6 +12,19 @@ public class DHTPutCommand implements CLICommand {
 
 	@Override
 	public void execute(String args) {
+
+		AppConfig.timestampedStandardPrint("--------Requesting critical section...");
+		while(!AppConfig.chordState.requestCriticalSection()){
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		AppConfig.timestampedStandardPrint("--------Critical section starting...");
+
+
 		String[] splitArgs = args.split(" ");
 		
 		if (splitArgs.length == 2) {
@@ -33,6 +46,8 @@ public class DHTPutCommand implements CLICommand {
 				AppConfig.timestampedErrorPrint("Invalid key and value pair. Both should be ints. 0 <= key <= " + ChordState.CHORD_SIZE
 						+ ". 0 <= value.");
 			}
+
+			AppConfig.chordState.releaseCriticalSection();
 		} else {
 			AppConfig.timestampedErrorPrint("Invalid arguments for put");
 		}

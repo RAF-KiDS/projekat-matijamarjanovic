@@ -1,18 +1,239 @@
-14:38:11 - Starting servent [0|localhost|1600]
-14:38:11 - Pausing for 10000 ms
-14:38:12 - Sending message [0|1600|0||NEW_NODE|1300|4]
-14:38:13 - Got message [4|1300|4||WELCOME|1600|0]
-14:38:14 - Sending message [0|1600|1||UPDATE|1300|4]
-14:38:18 - Got message [0|1600|4|1300,1400,1100,1200|UPDATE|1600|0]
-14:38:21 - Pausing for 4000 ms
-14:38:22 - Sending message [0|1600|2|25:3|PUT|1400|24]
-14:38:23 - Got message [48|1200|5|2:5|PUT|1600|0]
-14:38:24 - Sending message [0|1600|3|2:5|PUT|1300|4]
-14:38:25 - Please wait...
-14:38:25 - Pausing for 6000 ms
-14:38:26 - Sending message [0|1600|4|25|ASK_GET|1400|24]
-14:38:27 - Got message [48|1200|6|2|ASK_GET|1600|0]
-14:38:28 - Sending message [48|1200|5|2|ASK_GET|1300|4]
-14:38:28 - Got message [28|1100|8|25:3|TELL_GET|1600|0]
-14:38:28 - 25:3
-14:38:31 - Stopping...
+23:00:01 - Starting servent [44|localhost|1500]
+23:00:01 - --------Requesting critical section...
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:01 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:01 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - Sending message [44|1500|0||NEW_NODE|1200|48]
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:02 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:02 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - Got message [48|1200|5||WELCOME|1500|44]
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:03 - ==============All responses received, checking...==============
+23:00:03 - Sending message [44|1500|1||UPDATE|1200|48]
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:04 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:04 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:05 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:05 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:06 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:06 - ==============All responses received, checking...==============
+23:00:07 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:07 - ==============All responses received, checking...==============
+23:00:07 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:07 - ==============All responses received, checking...==============
+23:00:07 - >>>>>>>>>>>>Quorum size: 0 | quorum: []
+23:00:07 - ==============All responses received, checking...==============
+23:00:07 - Got message [44|1500|2|1200,1300,1105,1400|UPDATE|1500|44]
+23:00:07 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[44|localhost|1500], [48|localhost|1200], [24|localhost|1400]]
+23:00:08 - Sending message [44|1500|3||QUORUM_REQUEST|1400|24]
+23:00:08 - Sending message [44|1500|2||QUORUM_REQUEST|1200|48]
+23:00:09 - Got message [24|1400|4|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:12 - Got message [24|1400|6|2:5|PUT|1500|44]
+23:00:13 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[44|localhost|1500], [48|localhost|1200], [24|localhost|1400]]
+23:00:14 - Sending message [44|1500|4|2:5|PUT|1200|48]
+23:00:14 - Sending message [44|1500|5||QUORUM_REQUEST|1200|48]
+23:00:14 - Sending message [44|1500|6||QUORUM_REQUEST|1400|24]
+23:00:15 - Got message [24|1400|7|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:17 - Got message [48|1200|9||QUORUM_REQUEST|1500|44]
+23:00:17 - >>>>>>>>>>>>>>Received quorum request from: 1200. Lock status: true
+23:00:18 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[44|localhost|1500], [48|localhost|1200], [24|localhost|1400]]
+23:00:18 - Sending message [44|1500|7|UNLOCKED|QUORUM_RESPONSE|1200|48]
+23:00:19 - Sending message [44|1500|9||QUORUM_REQUEST|1400|24]
+23:00:19 - Got message [48|1200|11||QUORUM_REQUEST|1500|44]
+23:00:19 - >>>>>>>>>>>>>>Received quorum request from: 1200. Lock status: true
+23:00:19 - Sending message [44|1500|8||QUORUM_REQUEST|1200|48]
+23:00:20 - Got message [24|1400|8|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:20 - Sending message [44|1500|10|UNLOCKED|QUORUM_RESPONSE|1200|48]
+23:00:21 - Got message [48|1200|12|UNLOCKED|QUORUM_RESPONSE|1500|44]
+23:00:21 - ==============All responses received, checking...==============
+23:00:21 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[44|localhost|1500], [48|localhost|1200], [24|localhost|1400]]
+23:00:22 - Sending message [44|1500|12||QUORUM_REQUEST|1400|24]
+23:00:22 - Sending message [44|1500|11||QUORUM_REQUEST|1200|48]
+23:00:22 - Got message [48|1200|14|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:23 - Got message [24|1400|9|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:23 - ==============All responses received, checking...==============
+23:00:23 - --------Critical section starting...
+23:00:23 - --------Requesting critical section...
+23:00:23 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[44|localhost|1500], [48|localhost|1200], [24|localhost|1400]]
+23:00:23 - Sending message [44|1500|13||QUORUM_REQUEST|1200|48]
+23:00:24 - Sending message [44|1500|14||QUORUM_REQUEST|1400|24]
+23:00:24 - Got message [48|1200|15|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:25 - Got message [24|1400|10|LOCKED|QUORUM_RESPONSE|1500|44]
+23:00:26 - ==============All responses received, checking...==============
+23:00:26 - --------Critical section starting...
+23:00:26 - 25: 3
+23:00:26 - --------Critical section ending...
+23:00:26 - Pausing for 40000 ms
+23:01:06 - Stopping...

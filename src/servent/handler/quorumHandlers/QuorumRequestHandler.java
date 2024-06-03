@@ -18,22 +18,19 @@ public class QuorumRequestHandler implements MessageHandler {
     public void run() {
         if (clientMessage.getMessageType() == MessageType.QUORUM_REQUEST) {
             try {
-                // Check if lock is acquired before proceeding
-                if (AppConfig.chordState.isLocked()) {
-                    AppConfig.timestampedStandardPrint("Lock is acquired. Waiting for release...");
-                    QuorumResponseMessage responseMessage = new QuorumResponseMessage(
-                            AppConfig.myServentInfo.getListenerPort(),
-                            clientMessage.getSenderPort(),
-                            false);
 
-                    MessageUtil.sendMessage(responseMessage);
-                    return;
-                }
+                //koje je stanje
+                boolean isLocked = AppConfig.chordState.isLocked();
+
+/*                AppConfig.timestampedStandardPrint(">>>>>>>>>>>>>>Received quorum request from: "
+                        + clientMessage.getSenderPort()
+                        + ". Lock status: " + isLocked);*/
+
 
                 QuorumResponseMessage responseMessage = new QuorumResponseMessage(
                         AppConfig.myServentInfo.getListenerPort(),
                         clientMessage.getSenderPort(),
-                        true
+                        isLocked
                 );
                 MessageUtil.sendMessage(responseMessage);
 

@@ -4,17 +4,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import servent.message.AskGetMessage;
-import servent.message.BasicMessage;
-import servent.message.PutMessage;
-import servent.message.WelcomeMessage;
+import servent.message.*;
+import servent.message.quorumMessages.QuorumRequestMessage;
 import servent.message.util.MessageUtil;
 
 /**
@@ -60,10 +57,10 @@ public class ChordState {
 	private Map<Integer, Boolean> quorumResponses;
 
 	//kada je true znaci da je prosla provera za kvorum, nakon izvrsavanja CS postavlja se na false do prolaska sledece provere
-	private boolean checkCleared;
+	private AtomicBoolean checkCleared;
 
 	private final Integer lockKey = -8;
-	
+
 	public ChordState() {
 		this.chordLevel = 1;
 		int tmp = CHORD_SIZE;
@@ -86,7 +83,7 @@ public class ChordState {
 		quorum = new ArrayList<>();
 
 		quorumResponses = new ConcurrentHashMap<>();
-		checkCleared = false;
+		checkCleared = new AtomicBoolean(false);
 	}
 	
 	/**
@@ -117,12 +114,11 @@ public class ChordState {
 			e.printStackTrace();
 		}
 	}
-
-	public boolean isCheckCleared() {
+	public AtomicBoolean isCheckCleared() {
 		return checkCleared;
 	}
 
-	public void setCheckCleared(boolean checkCleared) {
+	public void setCheckCleared(AtomicBoolean checkCleared) {
 		this.checkCleared = checkCleared;
 	}
 
@@ -342,19 +338,19 @@ public class ChordState {
 		quorum.add(AppConfig.myServentInfo);
 
 		for (int i = 0; i < successorTable.length; i++) {
+			if(quorum.contains(successorTable[i])){
+				break;
+			}
 			quorum.add(successorTable[i]);
 		}
 
-		int predIndex = allNodeInfo.indexOf(predecessorInfo);
-
-		//dodavanje svih prethodnika do 0 da bi kvorum bio sto veci
-		for (int i = 0; i < successorTable.length; i++) {
-			int index = (predIndex - i + allNodeInfo.size()) % allNodeInfo.size();
-			if (index >= 0 && index < allNodeInfo.size()) {
-				quorum.add(allNodeInfo.get(index));
+		//dodavanje prethnodnika u kvorum
+		if (predecessorInfo != null) {
+			if(!quorum.contains(predecessorInfo)){
+				quorum.add(predecessorInfo);
 			}
-		}
 
+		}
 	}
 
 	public List<ServentInfo> getQuorum() {
@@ -373,18 +369,64 @@ public class ChordState {
 		valueMap.put(lockKey, 0);
 	}
 
-	public boolean isLocked(){
+	public synchronized boolean isLocked(){
 		return valueMap.get(lockKey) == 1;
 	}
 
-	// Methods for handling mutual exclusion requests and releases
-	public void requestCriticalSection() {
-		// Implement request logic here
+	public synchronized void setLocked(boolean locked) {
+		valueMap.put(lockKey, locked ? 1 : 0);
 	}
 
-	public void releaseCriticalSection() {
-		// Implement release logic here
+
+	public boolean requestCriticalSection() {
+		//AppConfig.timestampedStandardPrint(">>>>>>>>>>>>Quorum size: " + getQuorumSize() + " | quorum: " + quorum);
+		quorumResponses.clear();
+
+		lock();
+		for (ServentInfo serventInfo : quorum) {
+			if (serventInfo.getListenerPort() != AppConfig.myServentInfo.getListenerPort()) {
+				QuorumRequestMessage qrm = new QuorumRequestMessage(AppConfig.myServentInfo.getListenerPort(), serventInfo.getListenerPort(), "");
+				MessageUtil.sendMessage(qrm);
+			}
+		}
+
+		long startTime = System.currentTimeMillis();
+		long timeout = 5000; // 5 seconds timeout
+
+		while (quorumResponses.size() < quorum.size() - 1) {
+			try {
+				Thread.sleep(50);
+				if (System.currentTimeMillis() - startTime > timeout) {
+					AppConfig.timestampedErrorPrint("<<<<<<<<<<<<<Quorum request timed out. Retrying...");
+					unlock(); // Unlock before retrying
+					Thread.sleep(new Random().nextInt(1000)); // Random backoff
+					return requestCriticalSection(); // Retry the request
+				}
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				unlock(); // Ensure lock is released on interrupt
+				return false;
+			}
+		}
+
+
+		quorumResponses.clear();
+		//AppConfig.timestampedStandardPrint("==============All responses received, checking...==============");
+
+
+		if(isCheckCleared().get()){
+			checkCleared = new AtomicBoolean(false);
+			return true;
+		}
+
+		unlock();
+		return false;
 	}
+
+	public synchronized void releaseCriticalSection() {
+		unlock();
+	}
+
 
 	/**
 	 * The Chord put operation. Stores locally if key is ours, otherwise sends it on.
@@ -392,6 +434,7 @@ public class ChordState {
 	public void putValue(int key, int value) {
 		if (isKeyMine(key)) {
 			valueMap.put(key, value);
+			AppConfig.timestampedErrorPrint("Stored <" + key + "," + value + ">");
 		} else {
 			ServentInfo nextNode = getNextNodeForKey(key);
 			PutMessage pm = new PutMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), key, value);
@@ -408,6 +451,7 @@ public class ChordState {
 	 *		   </ul>
 	 */
 	public int getValue(int key) {
+
 		if (isKeyMine(key)) {
 			if (valueMap.containsKey(key)) {
 				return valueMap.get(key);

@@ -71,9 +71,10 @@ public class MultipleServentStarter {
 				+ "If servents do not finish on their own, type \"stop\" to finish them");
 		
 		Process bsProcess = null;
-		ProcessBuilder bsBuilder = new ProcessBuilder("java", "-cp", "out\\production\\KiDS-vezbe9", "app.BootstrapServer", String.valueOf(AppConfig.BOOTSTRAP_PORT));
+		ProcessBuilder bsBuilder = new ProcessBuilder("java", "-cp", "target\\classes", "app.BootstrapServer", String.valueOf(AppConfig.BOOTSTRAP_PORT));
 		try {
 			bsProcess = bsBuilder.start();
+			AppConfig.timestampedStandardPrint("Bootstrap server started.");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -89,14 +90,14 @@ public class MultipleServentStarter {
 		
 		for(int i = 0; i < serventCount; i++) {
 			try {
-				ProcessBuilder builder = new ProcessBuilder("java", "-cp", "out\\production\\KiDS-vezbe9", "app.ServentMain",
+				ProcessBuilder builder = new ProcessBuilder("java", "-cp", "target\\classes", "app.ServentMain",
 						testName+"/servent_list.properties", String.valueOf(i));
 				
 				//We use files to read and write.
 				//System.out, System.err and System.in will point to these files.
 				builder.redirectOutput(new File(testName+"/output/servent" + i + "_out.txt"));
 				builder.redirectError(new File(testName+"/error/servent" + i + "_err.txt"));
-				builder.redirectInput(new File(testName+"/input/servent" + i + "_in.txt"));
+				builder.redirectInput(new File(testName+"/input_concurrent_testing/servent" + i + "_in.txt"));
 				
 				//Starts the servent as a completely separate process.
 				Process p = builder.start();
@@ -106,7 +107,7 @@ public class MultipleServentStarter {
 				e.printStackTrace();
 			}
 			try { //give each node 10s to start up
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -133,7 +134,7 @@ public class MultipleServentStarter {
 	}
 	
 	public static void main(String[] args) {
-		startServentTest("chord");
+		startServentTest("projekat-matijamarjanovic\\chord");
 		
 	}
 

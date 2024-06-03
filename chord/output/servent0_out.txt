@@ -1,3 +1,32 @@
-09:43:20 - Starting servent [28|localhost|1100]
-09:43:20 - Pausing for 50000 ms
-09:43:20 - First node in Chord system.
+22:59:41 - Starting servent [13|localhost|1105]
+22:59:41 - Pausing for 25000 ms
+22:59:41 - First node in Chord system.
+22:59:47 - Got message [48|1200|0||NEW_NODE|1105|13]
+22:59:48 - Sending message [13|1105|0||WELCOME|1200|48]
+22:59:49 - Got message [48|1200|1||UPDATE|1105|13]
+22:59:50 - Sending message [48|1200|1|1105|UPDATE|1200|48]
+22:59:52 - Got message [4|1300|0||NEW_NODE|1105|13]
+22:59:53 - Sending message [13|1105|2||WELCOME|1300|4]
+22:59:54 - Got message [4|1300|1||UPDATE|1105|13]
+22:59:54 - Sending message [4|1300|3|1105|UPDATE|1200|48]
+23:00:02 - Got message [24|1400|2|1200,1300|UPDATE|1105|13]
+23:00:02 - Sending message [24|1400|4|1200,1300,1105|UPDATE|1400|24]
+23:00:05 - Got message [44|1500|3|1200,1300|UPDATE|1105|13]
+23:00:06 - Sending message [44|1500|5|1200,1300,1105|UPDATE|1400|24]
+23:00:06 - --------Requesting critical section...
+23:00:06 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[13|localhost|1105], [24|localhost|1400], [4|localhost|1300]]
+23:00:07 - Sending message [13|1105|6||QUORUM_REQUEST|1400|24]
+23:00:07 - Sending message [13|1105|7||QUORUM_REQUEST|1300|4]
+23:00:08 - Got message [24|1400|3|LOCKED|QUORUM_RESPONSE|1105|13]
+23:00:08 - Got message [4|1300|4|LOCKED|QUORUM_RESPONSE|1105|13]
+23:00:08 - ==============All responses received, checking...==============
+23:00:08 - >>>>>>>>>>>>Quorum size: 3 | quorum: [[13|localhost|1105], [24|localhost|1400], [4|localhost|1300]]
+23:00:09 - Sending message [13|1105|9||QUORUM_REQUEST|1300|4]
+23:00:09 - Sending message [13|1105|8||QUORUM_REQUEST|1400|24]
+23:00:10 - Got message [4|1300|5|LOCKED|QUORUM_RESPONSE|1105|13]
+23:00:11 - Got message [24|1400|5|LOCKED|QUORUM_RESPONSE|1105|13]
+23:00:11 - ==============All responses received, checking...==============
+23:00:11 - --------Critical section starting...
+23:00:11 - Pausing for 15000 ms
+23:00:12 - Sending message [13|1105|10|2:5|PUT|1400|24]
+23:00:26 - Stopping...
