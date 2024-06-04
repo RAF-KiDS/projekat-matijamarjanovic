@@ -26,11 +26,11 @@ public class DHTGetCommand implements CLICommand {
 
 			int key = Integer.parseInt(args);
 
-			int val = AppConfig.chordState.getValue(key);
+			Object val = AppConfig.chordState.getValue(key);
 
-			if (val == -2) {
+			if ((Integer)val == -2) {
 				AppConfig.timestampedStandardPrint("Please wait...");
-			} else if (val == -1) {
+			} else if ((Integer)val == -1) {
 				AppConfig.timestampedStandardPrint("No such key: " + key);
 			} else {
 				AppConfig.timestampedErrorPrint("Got <" + key + "," + val + ">");

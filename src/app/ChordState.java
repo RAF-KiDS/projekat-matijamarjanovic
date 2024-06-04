@@ -53,7 +53,7 @@ public class ChordState {
 	//we DO NOT use this to send messages, but only to construct the successor table
 	private List<ServentInfo> allNodeInfo;
 	private List<ServentInfo> quorum;
-	private Map<Integer, Integer> valueMap;
+	private Map<Integer, Object> valueMap;
 
 	private Map<Integer, Boolean> quorumResponses;
 
@@ -101,6 +101,7 @@ public class ChordState {
 		successorTable[0] = new ServentInfo("localhost", welcomeMsg.getSenderPort());
 		this.valueMap = welcomeMsg.getValues();
 		//dodaj u valueMap vrednost za proveru locka, key uvek -8
+
 		//0 ako je otkljucano, 1 ako je zakljucano
 		this.valueMap.put(lockKey, 0);
 		
@@ -151,14 +152,14 @@ public class ChordState {
 		this.predecessorInfo = newNodeInfo;
 	}
 
-	public Map<Integer, Integer> getValueMap() {
+	public Map<Integer, Object> getValueMap() {
 		return valueMap;
 	}
 	
-	public void setValueMap(Map<Integer, Integer> valueMap) {
+	public void setValueMap(Map<Integer, Object> valueMap) {
 		this.valueMap = valueMap;
 	}
-	
+
 	public boolean isCollision(int chordId) {
 		if (chordId == AppConfig.myServentInfo.getChordId()) {
 			return true;
@@ -390,7 +391,7 @@ public class ChordState {
 	}
 
 	public synchronized boolean isLocked(){
-		return valueMap.get(lockKey) == 1;
+		return (Integer) valueMap.get(lockKey) == 1;
 	}
 
 	public synchronized void setLocked(boolean locked) {
@@ -451,7 +452,7 @@ public class ChordState {
 	/**
 	 * The Chord put operation. Stores locally if key is ours, otherwise sends it on.
 	 */
-	public void putValue(int key, int value) {
+	public void putValue(int key, Object value) {
 		if (isKeyMine(key)) {
 			valueMap.put(key, value);
 			AppConfig.timestampedErrorPrint("Stored <" + key + "," + value + ">");
@@ -461,6 +462,7 @@ public class ChordState {
 			MessageUtil.sendMessage(pm);
 		}
 	}
+
 	
 	/**
 	 * The chord get operation. Gets the value locally if key is ours, otherwise asks someone else to give us the value.
@@ -470,7 +472,7 @@ public class ChordState {
 	 *			<li>-2 if we asked someone else</li>
 	 *		   </ul>
 	 */
-	public int getValue(int key) {
+	public Object getValue(int key) {
 
 		if (isKeyMine(key)) {
 			if (valueMap.containsKey(key)) {
@@ -486,5 +488,6 @@ public class ChordState {
 		
 		return -2;
 	}
+
 
 }

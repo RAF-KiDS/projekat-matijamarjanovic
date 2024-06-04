@@ -3,6 +3,7 @@ package servent.handler;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 
 import app.AppConfig;
 import app.ServentInfo;
@@ -44,14 +45,15 @@ public class NewNodeHandler implements MessageHandler {
 				
 				AppConfig.chordState.setPredecessor(newNodeInfo);
 				
-				Map<Integer, Integer> myValues = AppConfig.chordState.getValueMap();
-				Map<Integer, Integer> hisValues = new HashMap<>();
-				
+				Map<Integer, Object> myValues = AppConfig.chordState.getValueMap();
+				Map<Integer, Object> hisValues = new HashMap<>();
+
+
 				int myId = AppConfig.myServentInfo.getChordId();
 				int hisPredId = hisPred.getChordId();
 				int newNodeId = newNodeInfo.getChordId();
 				
-				for (Entry<Integer, Integer> valueEntry : myValues.entrySet()) {
+				for (Entry<Integer, Object> valueEntry : myValues.entrySet()) {
 					if (hisPredId == myId) { //i am first and he is second
 						if (myId < newNodeId) {
 							if (valueEntry.getKey() <= newNodeId && valueEntry.getKey() > myId) {
@@ -85,9 +87,12 @@ public class NewNodeHandler implements MessageHandler {
 					myValues.remove(key);
 				}
 				AppConfig.chordState.setValueMap(myValues);
-				
+
+
 				WelcomeMessage wm = new WelcomeMessage(AppConfig.myServentInfo.getListenerPort(), newNodePort, hisValues);
 				MessageUtil.sendMessage(wm);
+
+
 			} else { //if he is not my predecessor, let someone else take care of it
 				ServentInfo nextNode = AppConfig.chordState.getNextNodeForKey(newNodeInfo.getChordId());
 				NewNodeMessage nnm = new NewNodeMessage(newNodePort, nextNode.getListenerPort());

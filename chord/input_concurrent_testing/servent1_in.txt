@@ -1,4 +1,4 @@
 pause 30000
-add_friend 0
+add_friend 44
 pause 35000
 stop

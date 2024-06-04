@@ -24,8 +24,8 @@ public class AskGetHandler implements MessageHandler {
 			try {
 				int key = Integer.parseInt(clientMessage.getMessageText());
 				if (AppConfig.chordState.isKeyMine(key)) {
-					Map<Integer, Integer> valueMap = AppConfig.chordState.getValueMap(); 
-					int value = -1;
+					Map<Integer, Object> valueMap = AppConfig.chordState.getValueMap();
+					Object value = -1;
 					
 					if (valueMap.containsKey(key)) {
 						value = valueMap.get(key);

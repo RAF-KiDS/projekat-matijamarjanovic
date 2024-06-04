@@ -1,1 +1,0 @@
-16:39:27 - Got ask get with bad text: TTL expired. There is no node with the key: 0 no friend to add.

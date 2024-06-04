@@ -23,8 +23,10 @@ public class PutHandler implements MessageHandler {
 				try {
 					key = Integer.parseInt(splitText[0]);
 					value = Integer.parseInt(splitText[1]);
-					
+					//String sValue = splitText[1];
+
 					AppConfig.chordState.putValue(key, value);
+					//AppConfig.chordState.putFile(key, value+"");
 				} catch (NumberFormatException e) {
 					AppConfig.timestampedErrorPrint("Got put message with bad text: " + clientMessage.getMessageText());
 				}

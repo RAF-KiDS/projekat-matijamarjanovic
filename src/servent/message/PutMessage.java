@@ -7,4 +7,8 @@ public class PutMessage extends BasicMessage {
 	public PutMessage(int senderPort, int receiverPort, int key, int value) {
 		super(MessageType.PUT, senderPort, receiverPort, key + ":" + value);
 	}
+
+	public PutMessage(int senderPort, int receiverPort, int key, Object value) {
+		super(MessageType.PUT, senderPort, receiverPort, key + ":" + value.toString());
+	}
 }
