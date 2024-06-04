@@ -455,7 +455,7 @@ public class ChordState {
 	public void putValue(int key, Object value) {
 		if (isKeyMine(key)) {
 			valueMap.put(key, value);
-			AppConfig.timestampedErrorPrint("Stored <" + key + "," + value + ">");
+			AppConfig.timestampedErrorPrint("Stored <" + key + "," + value.toString() + "> : " + value.getClass().getName());
 		} else {
 			ServentInfo nextNode = getNextNodeForKey(key);
 			PutMessage pm = new PutMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), key, value);

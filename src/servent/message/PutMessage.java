@@ -1,5 +1,7 @@
 package servent.message;
 
+import servent.model.ChordFile;
+
 public class PutMessage extends BasicMessage {
 
 	private static final long serialVersionUID = 5163039209888734276L;

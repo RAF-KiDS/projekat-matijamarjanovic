@@ -1,0 +1,4 @@
+dht_put 25 3
+dht_get 25
+pause 40000
+stop

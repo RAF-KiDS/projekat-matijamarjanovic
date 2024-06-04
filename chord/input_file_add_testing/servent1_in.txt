@@ -1,0 +1,4 @@
+pause 30000
+add_file test.txt public
+pause 35000
+stop

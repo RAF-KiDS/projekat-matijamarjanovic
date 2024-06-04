@@ -23,10 +23,10 @@ public class AppConfig {
 	public static ServentInfo myServentInfo;
 
 
-	private static String bsIpAdress;
-	private static String root;
-	private static int sft;
-	private static int hft;
+	public static String bsIpAdress;
+	public static String root;
+	public static int sft;
+	public static int hft;
 
 
 	/**

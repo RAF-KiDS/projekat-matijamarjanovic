@@ -1,8 +1,12 @@
 package servent.handler;
 
 import app.AppConfig;
+import app.ChordState;
 import servent.message.Message;
 import servent.message.MessageType;
+import servent.model.ChordFile;
+
+import java.io.FileNotFoundException;
 
 public class PutHandler implements MessageHandler {
 
@@ -18,17 +22,37 @@ public class PutHandler implements MessageHandler {
 			String[] splitText = clientMessage.getMessageText().split(":");
 			if (splitText.length == 2) {
 				int key = 0;
-				int value = 0;
+				Object value = 0;
 				
 				try {
 					key = Integer.parseInt(splitText[0]);
-					value = Integer.parseInt(splitText[1]);
-					//String sValue = splitText[1];
 
+					if(splitText[1].split(",").length == 3) {
+						String privacy = splitText[1].split(",")[0];
+						String path = splitText[1].split(",")[1];
+						String creatorId = splitText[1].split(",")[2];
+						value = new ChordFile(privacy, path, Integer.parseInt(creatorId));
+
+					}else if (splitText[1].split(",").length == 1) {
+						value = Integer.parseInt(splitText[1]);
+					}
+
+					if (key < 0 || key >= ChordState.CHORD_SIZE) {
+						throw new NumberFormatException();
+					}
+					if (value instanceof ChordFile && ((ChordFile) value).getFile() == null) {
+						throw new FileNotFoundException();
+					}
 					AppConfig.chordState.putValue(key, value);
-					//AppConfig.chordState.putFile(key, value+"");
-				} catch (NumberFormatException e) {
-					AppConfig.timestampedErrorPrint("Got put message with bad text: " + clientMessage.getMessageText());
+				} catch (Exception e) {
+
+					if (e instanceof NumberFormatException)
+						AppConfig.timestampedErrorPrint("Invalid key. 0 <= key <= " + ChordState.CHORD_SIZE);
+					else if (e instanceof FileNotFoundException)
+						AppConfig.timestampedErrorPrint("Invalid file path.");
+					else
+						AppConfig.timestampedErrorPrint("Got put message with bad text: " + clientMessage.getMessageText());
+
 				}
 			} else {
 				AppConfig.timestampedErrorPrint("Got put message with bad text: " + clientMessage.getMessageText());

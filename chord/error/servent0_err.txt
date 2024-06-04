@@ -1,2 +1,3 @@
-18:39:33 - Stored <2,5>
-18:39:39 - Stored <25,3>
+01:22:14 - Stored <2,5> : java.lang.Integer
+01:22:18 - Stored <25,3> : java.lang.Integer
+01:22:27 - Stored <22,test.txt,public,32> : servent.model.ChordFile
