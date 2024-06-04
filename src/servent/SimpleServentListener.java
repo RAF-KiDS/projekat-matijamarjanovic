@@ -18,6 +18,8 @@ import servent.handler.SorryHandler;
 import servent.handler.TellGetHandler;
 import servent.handler.UpdateHandler;
 import servent.handler.WelcomeHandler;
+import servent.handler.friendRequestHandlers.FriendAcceptHandler;
+import servent.handler.friendRequestHandlers.FriendRequestHandler;
 import servent.handler.quorumHandlers.QuorumRequestHandler;
 import servent.handler.quorumHandlers.QuorumResponseHandler;
 import servent.message.Message;
@@ -94,6 +96,12 @@ public class SimpleServentListener implements Runnable, Cancellable {
 					break;
 				case QUORUM_RESPONSE:
 					messageHandler = new QuorumResponseHandler(clientMessage);
+					break;
+				case FRIEND_REQUEST:
+					messageHandler = new FriendRequestHandler(clientMessage);
+					break;
+				case FRIEND_ACCEPT:
+					messageHandler = new FriendAcceptHandler(clientMessage);
 					break;
 				case POISON:
 					break;

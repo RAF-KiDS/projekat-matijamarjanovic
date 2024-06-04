@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class contains all the global application configuration stuff.
@@ -25,7 +27,8 @@ public class AppConfig {
 	private static String root;
 	private static int sft;
 	private static int hft;
-	
+
+
 	/**
 	 * Print a message to stdout with a timestamp
 	 * @param message message to print
@@ -36,7 +39,7 @@ public class AppConfig {
 		
 		System.out.println(timeFormat.format(now) + " - " + message);
 	}
-	
+
 	/**
 	 * Print a message to stderr with a timestamp
 	 * @param message message to print
@@ -143,7 +146,7 @@ public class AppConfig {
 		try {
 			bsIpAdress = properties.getProperty("bs");
 		} catch (NumberFormatException e) {
-			timestampedErrorPrint("Problem reading bootstrap info : " + root + ". Exiting...");
+			timestampedErrorPrint("Problem reading bootstrap info : " + bsIpAdress + ". Exiting...");
 			System.exit(0);
 		}
 

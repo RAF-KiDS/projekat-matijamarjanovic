@@ -1,4 +1,4 @@
 pause 30000
-dht_get 2
-pause 100000
+add_friend 0
+pause 35000
 stop

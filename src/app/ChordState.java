@@ -7,6 +7,7 @@ import java.net.UnknownHostException;
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -61,6 +62,9 @@ public class ChordState {
 
 	private final Integer lockKey = -8;
 
+	private static List<ServentInfo> friendList;
+
+
 	public ChordState() {
 		this.chordLevel = 1;
 		int tmp = CHORD_SIZE;
@@ -84,6 +88,7 @@ public class ChordState {
 
 		quorumResponses = new ConcurrentHashMap<>();
 		checkCleared = new AtomicBoolean(false);
+		friendList = new CopyOnWriteArrayList<>();
 	}
 	
 	/**
@@ -351,6 +356,21 @@ public class ChordState {
 			}
 
 		}
+	}
+
+	public boolean addFriend(Integer chordId){
+		for (ServentInfo serventInfo : allNodeInfo) {
+			if (serventInfo.getChordId() == chordId) {
+				if(!friendList.contains(serventInfo)){
+					friendList.add(serventInfo);
+					AppConfig.timestampedStandardPrint(">>Friend added: " + serventInfo);
+					return true;
+				}
+			}
+		}
+
+		return false;
+
 	}
 
 	public List<ServentInfo> getQuorum() {
