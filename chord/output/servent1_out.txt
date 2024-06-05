@@ -1,31 +1,40 @@
-01:21:49 - Starting servent [32|localhost|1120]
-01:21:49 - Pausing for 30000 ms
-01:21:50 - Sending message [32|1120|0||NEW_NODE|1100|28]
-01:21:51 - Got message [28|1100|0||WELCOME|1120|32]
-01:21:52 - Sending message [32|1120|1||UPDATE|1100|28]
-01:21:53 - Got message [32|1120|1|1100|UPDATE|1120|32]
-01:21:58 - Got message [36|1140|3|1100|UPDATE|1120|32]
-01:21:59 - Sending message [36|1140|2|1100,1120|UPDATE|1140|36]
-01:22:00 - Got message [40|1160|0||NEW_NODE|1120|32]
-01:22:01 - Sending message [40|1160|3||NEW_NODE|1140|36]
-01:22:04 - Got message [40|1160|5|1100|UPDATE|1120|32]
-01:22:06 - Sending message [40|1160|4|1100,1120|UPDATE|1140|36]
-01:22:09 - Got message [44|1180|7|1100|UPDATE|1120|32]
-01:22:10 - Got message [28|1100|8||QUORUM_REQUEST|1120|32]
-01:22:10 - Sending message [44|1180|5|1100,1120|UPDATE|1140|36]
-01:22:11 - Sending message [32|1120|6|LOCKED|QUORUM_RESPONSE|1100|28]
-01:22:13 - Got message [28|1100|10||QUORUM_REQUEST|1120|32]
-01:22:13 - Sending message [32|1120|7|LOCKED|QUORUM_RESPONSE|1100|28]
-01:22:19 - --------Requesting critical section...
-01:22:20 - Sending message [32|1120|8||QUORUM_REQUEST|1140|36]
-01:22:20 - Sending message [32|1120|9||QUORUM_REQUEST|1100|28]
-01:22:21 - Got message [36|1140|6|LOCKED|QUORUM_RESPONSE|1120|32]
-01:22:21 - Got message [28|1100|15|LOCKED|QUORUM_RESPONSE|1120|32]
-01:22:22 - Sending message [32|1120|11||QUORUM_REQUEST|1100|28]
-01:22:22 - Sending message [32|1120|10||QUORUM_REQUEST|1140|36]
-01:22:23 - Got message [28|1100|17|LOCKED|QUORUM_RESPONSE|1120|32]
-01:22:23 - Got message [36|1140|7|LOCKED|QUORUM_RESPONSE|1120|32]
-01:22:23 - --------Critical section starting...
-01:22:23 - Pausing for 35000 ms
-01:22:24 - Sending message [32|1120|12|22:test.txt,public,32|PUT|1140|36]
-01:22:58 - Stopping...
+02:08:32 - Starting servent [32|localhost|1120]
+02:08:32 - Pausing for 30000 ms
+02:08:33 - Sending message [32|1120|0||NEW_NODE|1100|28]
+02:08:34 - Got message [28|1100|0||WELCOME|1120|32]
+02:08:35 - Sending message [32|1120|1||UPDATE|1100|28]
+02:08:36 - Got message [32|1120|1|1100|UPDATE|1120|32]
+02:08:41 - Got message [36|1140|3|1100|UPDATE|1120|32]
+02:08:42 - Sending message [36|1140|2|1100,1120|UPDATE|1140|36]
+02:08:47 - Got message [40|1160|5|1100|UPDATE|1120|32]
+02:08:48 - Sending message [40|1160|3|1100,1120|UPDATE|1140|36]
+02:08:52 - Got message [28|1100|7||QUORUM_REQUEST|1120|32]
+02:08:53 - Sending message [32|1120|4|LOCKED|QUORUM_RESPONSE|1100|28]
+02:08:53 - Got message [44|1180|9|1100|UPDATE|1120|32]
+02:08:54 - Sending message [44|1180|5|1100,1120|UPDATE|1140|36]
+02:08:55 - Got message [28|1100|10||QUORUM_REQUEST|1120|32]
+02:08:56 - Sending message [32|1120|6|LOCKED|QUORUM_RESPONSE|1100|28]
+02:09:02 - --------Requesting critical section...
+02:09:03 - Sending message [32|1120|8||QUORUM_REQUEST|1100|28]
+02:09:03 - Sending message [32|1120|7||QUORUM_REQUEST|1140|36]
+02:09:03 - Got message [36|1140|6|LOCKED|QUORUM_RESPONSE|1120|32]
+02:09:04 - Got message [28|1100|15|LOCKED|QUORUM_RESPONSE|1120|32]
+02:09:04 - Sending message [32|1120|9||QUORUM_REQUEST|1140|36]
+02:09:05 - Sending message [32|1120|10||QUORUM_REQUEST|1100|28]
+02:09:06 - Got message [36|1140|7|LOCKED|QUORUM_RESPONSE|1120|32]
+02:09:06 - Got message [28|1100|17|LOCKED|QUORUM_RESPONSE|1120|32]
+02:09:07 - --------Critical section starting...
+02:09:07 - --------Requesting critical section...
+02:09:07 - Sending message [32|1120|12||QUORUM_REQUEST|1140|36]
+02:09:07 - Sending message [32|1120|13||QUORUM_REQUEST|1100|28]
+02:09:08 - Sending message [32|1120|11|22:test.txt,public,32|PUT|1140|36]
+02:09:08 - Got message [36|1140|8|LOCKED|QUORUM_RESPONSE|1120|32]
+02:09:08 - Got message [28|1100|18|LOCKED|QUORUM_RESPONSE|1120|32]
+02:09:08 - --------Critical section starting...
+02:09:08 - Please wait...
+02:09:08 - --------Critical section ending...
+02:09:08 - Pausing for 35000 ms
+02:09:10 - Sending message [32|1120|14|22|ASK_GET|1140|36]
+02:09:13 - Got message [28|1100|19|22:test.txt,public,32|TELL_GET|1120|32]
+02:09:13 - 22 -> public,test.txt,32
+02:09:43 - Stopping...

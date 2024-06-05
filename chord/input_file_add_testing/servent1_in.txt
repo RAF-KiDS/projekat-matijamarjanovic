@@ -1,4 +1,5 @@
 pause 30000
 add_file test.txt public
+get_file test.txt
 pause 35000
 stop

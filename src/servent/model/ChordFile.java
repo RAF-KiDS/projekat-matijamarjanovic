@@ -29,7 +29,7 @@ public class ChordFile {
         this.chordId = generateChordId(fileName);
     }
 
-    private int generateChordId(String fileName){
+    public static int generateChordId(String fileName){
         int asciiCodeSum = 0;
         for (int i = 0; i < fileName.length(); i++) {
             asciiCodeSum += fileName.charAt(i);
