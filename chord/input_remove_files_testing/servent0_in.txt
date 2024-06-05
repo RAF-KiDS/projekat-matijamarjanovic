@@ -1,0 +1,5 @@
+pause 25000
+add_friend 44
+dht_put 2 5
+pause 60000
+stop

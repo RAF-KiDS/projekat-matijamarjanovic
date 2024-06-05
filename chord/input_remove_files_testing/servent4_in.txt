@@ -1,0 +1,7 @@
+pause 30000
+add_friend 36
+add_friend 40
+add_friend 28
+view_files localhost:1120
+pause 60000
+stop

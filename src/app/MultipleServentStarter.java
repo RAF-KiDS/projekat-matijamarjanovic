@@ -97,7 +97,7 @@ public class MultipleServentStarter {
 				//System.out, System.err and System.in will point to these files.
 				builder.redirectOutput(new File(testName+"/output/servent" + i + "_out.txt"));
 				builder.redirectError(new File(testName+"/error/servent" + i + "_err.txt"));
-				builder.redirectInput(new File(testName+"/input_viewfiles_testing/servent" + i + "_in.txt"));
+				builder.redirectInput(new File(testName+"/input_remove_files_testing/servent" + i + "_in.txt"));
 				
 				//Starts the servent as a completely separate process.
 				Process p = builder.start();

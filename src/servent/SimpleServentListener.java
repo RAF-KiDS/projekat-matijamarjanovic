@@ -14,6 +14,8 @@ import servent.handler.friendRequestHandlers.FriendAcceptHandler;
 import servent.handler.friendRequestHandlers.FriendRequestHandler;
 import servent.handler.quorumHandlers.QuorumRequestHandler;
 import servent.handler.quorumHandlers.QuorumResponseHandler;
+import servent.handler.viewFiles.ViewFilesHandler;
+import servent.handler.viewFiles.ViewFilesTellHandler;
 import servent.message.Message;
 import servent.message.util.MessageUtil;
 
@@ -97,6 +99,12 @@ public class SimpleServentListener implements Runnable, Cancellable {
 					break;
 				case REMOVE_FILE:
 					messageHandler = new RemoveFileHandler(clientMessage);
+					break;
+				case VIEW_FILES:
+					messageHandler = new ViewFilesHandler(clientMessage);
+					break;
+				case VIEW_FILES_TELL:
+					messageHandler = new ViewFilesTellHandler(clientMessage);
 					break;
 				case POISON:
 					break;

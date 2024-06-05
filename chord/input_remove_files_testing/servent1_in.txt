@@ -1,0 +1,7 @@
+pause 20000
+add_file test.txt private
+add_file testTwo.txt public
+add_friend 44
+get_file test.txt
+pause 60000
+stop

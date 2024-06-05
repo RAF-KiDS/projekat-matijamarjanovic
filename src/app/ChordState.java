@@ -45,9 +45,7 @@ public class ChordState {
 	public static int chordHash(int value) {
 		return 61 * value % CHORD_SIZE;
 	}
-	
 	private int chordLevel; //log_2(CHORD_SIZE)
-	
 	private ServentInfo[] successorTable;
 	private ServentInfo predecessorInfo;
 	
@@ -55,6 +53,8 @@ public class ChordState {
 	private List<ServentInfo> allNodeInfo;
 	private List<ServentInfo> quorum;
 	private Map<Integer, Object> valueMap;
+
+	private List<Object> myFiles;
 
 	private Map<Integer, Boolean> quorumResponses;
 
@@ -90,6 +90,8 @@ public class ChordState {
 		quorumResponses = new ConcurrentHashMap<>();
 		checkCleared = new AtomicBoolean(false);
 		friendList = new CopyOnWriteArrayList<>();
+
+		myFiles = new CopyOnWriteArrayList<>();
 	}
 	
 	/**
@@ -340,6 +342,15 @@ public class ChordState {
 		createQuorum();
 
 	}
+
+	public void addToMyFiles(ChordFile chordFile) {
+		myFiles.add(chordFile);
+	}
+
+	public List<Object> getMyFiles() {
+		return myFiles;
+	}
+
 	private void createQuorum() {
 		quorum.clear();
 		quorum.add(AppConfig.myServentInfo);
@@ -372,6 +383,58 @@ public class ChordState {
 		}
 
 		return false;
+
+	}
+
+	public boolean isFriend(Integer chordId){
+		for (ServentInfo serventInfo : friendList) {
+			if (serventInfo.getChordId() == chordId) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public synchronized boolean nodeExists(String adressPort){
+		String adress = "";
+		int port = -1;
+
+		try{
+			String[] adressPortSplit = adressPort.split(":");
+			adress = adressPortSplit[0];
+			port = Integer.parseInt(adressPortSplit[1]);
+		}catch (Exception e){
+			AppConfig.timestampedErrorPrint("Invalid address:port format.");
+			return false;
+		}
+
+		for (ServentInfo serventInfo : allNodeInfo) {
+			if (serventInfo.getIpAddress().equals(adress) && serventInfo.getListenerPort() == port) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public int getChordIdForAddressAndPort(String adressPort){
+		String adress = "";
+		int port = -1;
+
+		try{
+			String[] adressPortSplit = adressPort.split(":");
+			adress = adressPortSplit[0];
+			port = Integer.parseInt(adressPortSplit[1]);
+		}catch (Exception e){
+			AppConfig.timestampedErrorPrint("Invalid address:port format.");
+			return -1;
+		}
+
+		for (ServentInfo serventInfo : allNodeInfo) {
+			if (serventInfo.getIpAddress().equals(adress) && serventInfo.getListenerPort() == port) {
+				return serventInfo.getChordId();
+			}
+		}
+		return -1;
 
 	}
 
@@ -469,6 +532,9 @@ public class ChordState {
 	public void putValue(int key, Object value) {
 		if (isKeyMine(key)) {
 			valueMap.put(key, value);
+			if(valueMap.containsKey(key))
+				AppConfig.timestampedStandardPrint("Updated <" + key + "," + value.toString() + "> : " + value.getClass().getName());
+
 			AppConfig.timestampedErrorPrint("Stored <" + key + "," + value.toString() + "> : " + value.getClass().getName());
 		} else {
 			ServentInfo nextNode = getNextNodeForKey(key);

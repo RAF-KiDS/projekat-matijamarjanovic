@@ -25,6 +25,7 @@ public class AppConfig {
 
 	public static String bsIpAdress;
 	public static String root;
+	public static String localDBpath = "C:/Users/matij/IdeaProjects/KiDS-projekat/projekat-matijamarjanovic/localDB";
 	public static int sft;
 	public static int hft;
 

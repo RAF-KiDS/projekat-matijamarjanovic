@@ -3,7 +3,7 @@ package servent.model;
 import app.AppConfig;
 import app.ChordState;
 
-import java.io.File;
+import java.io.*;
 
 import static app.ChordState.CHORD_SIZE;
 
@@ -21,6 +21,7 @@ public class ChordFile {
         this.path = path;
         try {
             this.file = new File(AppConfig.root + "/" +path);
+            uploadAndSaveFile(this.file, AppConfig.localDBpath+ "/" + file.getName());
         }catch (Exception e){
             this.file = null;
         }
@@ -73,6 +74,25 @@ public class ChordFile {
     @Override
     public String toString() {
         return path + "," + privacy + "," + creatorId;
+    }
+
+
+    public static void uploadAndSaveFile(File sourceFile, String targetPath) {
+        File targetFile = new File(targetPath);
+        try (FileInputStream fis = new FileInputStream(sourceFile);
+             FileOutputStream fos = new FileOutputStream(targetFile)) {
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
+
+            System.out.println("File uploaded and saved successfully at " + targetPath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

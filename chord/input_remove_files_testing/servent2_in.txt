@@ -1,0 +1,5 @@
+pause 20000
+add_file testThree.txt private
+pause 20000
+pause 20000
+stop

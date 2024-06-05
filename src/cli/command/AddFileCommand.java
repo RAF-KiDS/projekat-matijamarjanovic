@@ -48,6 +48,7 @@ public class AddFileCommand implements CLICommand{
             }
 
             AppConfig.chordState.putValue(key, chordFile);
+            AppConfig.chordState.addToMyFiles(chordFile);
 
         } catch (Exception e) {
             AppConfig.timestampedErrorPrint("Invalid file path.");

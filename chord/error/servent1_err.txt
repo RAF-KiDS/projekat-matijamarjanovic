@@ -1,1 +1,15 @@
-16:57:21 - Got <22,test.txt,public,32>
+java.io.FileNotFoundException: C:\Users\matij\IdeaProjects\KiDS-projekat\projekat-matijamarjanovic\files_database\private (The system cannot find the file specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
+	at servent.model.ChordFile.uploadAndSaveFile(ChordFile.java:82)
+	at servent.model.ChordFile.<init>(ChordFile.java:24)
+	at servent.handler.TellGetHandler.run(TellGetHandler.java:29)
+	at java.base/java.util.concurrent.ForkJoinTask$AdaptedInterruptibleRunnable.compute(ForkJoinTask.java:1709)
+	at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1641)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:507)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1491)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:2073)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2035)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+23:12:08 - Got <22,private,test.txt,32>
