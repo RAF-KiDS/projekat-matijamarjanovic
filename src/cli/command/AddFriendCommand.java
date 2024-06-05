@@ -14,14 +14,7 @@ public class AddFriendCommand implements CLICommand {
     @Override
     public void execute(String args) {
         try {
-            AppConfig.timestampedStandardPrint("--------Requesting critical section...");
-            while(!AppConfig.chordState.requestCriticalSection()){
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            AppConfig.chordState.obtainCriticalSection();
 
             if(args.split(" ").length != 1) {
                 AppConfig.timestampedErrorPrint("Invalid number of arguments for add_friend command. Should be: add_friend key");
@@ -36,8 +29,6 @@ public class AddFriendCommand implements CLICommand {
             MessageUtil.sendMessage(friendRequestMessage);
 
             AppConfig.chordState.releaseCriticalSection();
-
-
         } catch (NumberFormatException e) {
             AppConfig.timestampedErrorPrint("Invalid argument for dht_get: " + args + ". Should be key, which is an int.");
         }

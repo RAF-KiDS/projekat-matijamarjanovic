@@ -9,15 +9,7 @@ import java.util.concurrent.Executors;
 
 import app.AppConfig;
 import app.Cancellable;
-import servent.handler.AskGetHandler;
-import servent.handler.MessageHandler;
-import servent.handler.NewNodeHandler;
-import servent.handler.NullHandler;
-import servent.handler.PutHandler;
-import servent.handler.SorryHandler;
-import servent.handler.TellGetHandler;
-import servent.handler.UpdateHandler;
-import servent.handler.WelcomeHandler;
+import servent.handler.*;
 import servent.handler.friendRequestHandlers.FriendAcceptHandler;
 import servent.handler.friendRequestHandlers.FriendRequestHandler;
 import servent.handler.quorumHandlers.QuorumRequestHandler;
@@ -102,6 +94,9 @@ public class SimpleServentListener implements Runnable, Cancellable {
 					break;
 				case FRIEND_ACCEPT:
 					messageHandler = new FriendAcceptHandler(clientMessage);
+					break;
+				case REMOVE_FILE:
+					messageHandler = new RemoveFileHandler(clientMessage);
 					break;
 				case POISON:
 					break;

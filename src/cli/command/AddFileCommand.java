@@ -15,16 +15,8 @@ public class AddFileCommand implements CLICommand{
 
     @Override
     public void execute(String args) {
-        AppConfig.timestampedStandardPrint("--------Requesting critical section...");
-        while(!AppConfig.chordState.requestCriticalSection()){
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        AppConfig.chordState.obtainCriticalSection();
 
-        AppConfig.timestampedStandardPrint("--------Critical section starting...");
 
         String[] splitArgs = args.split(" ");
         if (splitArgs.length != 2) {

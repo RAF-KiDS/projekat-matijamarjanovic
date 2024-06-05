@@ -3,27 +3,26 @@ package cli.command;
 import app.AppConfig;
 import servent.model.ChordFile;
 
-public class GetFileCommand implements CLICommand{
+public class RemoveFileCommand implements CLICommand{
     @Override
     public String commandName() {
-        return "get_file";
+        return "remove_file";
     }
 
     @Override
     public void execute(String args) {
-
         AppConfig.chordState.obtainCriticalSection();
 
 
         if (args.split(" ").length != 1) {
-            AppConfig.timestampedErrorPrint("Invalid argument for get_file: " + args + ". Should be one argument, which is fileName.");
+            AppConfig.timestampedErrorPrint("Invalid argument for remove_file: " + args + ". Should one argument, which is fileName");
             AppConfig.chordState.releaseCriticalSection();
             return;
         }
         String name = args;
         int key = ChordFile.generateChordId(name);
 
-        Object val = AppConfig.chordState.getValue(key);
+        Object val = AppConfig.chordState.removeValue(key);
 
         if ((Integer)val == -2) {
             AppConfig.timestampedStandardPrint("Please wait...");
@@ -39,5 +38,6 @@ public class GetFileCommand implements CLICommand{
 
 
         AppConfig.chordState.releaseCriticalSection();
+
     }
 }

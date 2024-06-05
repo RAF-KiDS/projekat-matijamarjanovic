@@ -1,0 +1,5 @@
+pause 20000
+add_file testTwo.txt private
+pause 20000
+pause 20000
+stop

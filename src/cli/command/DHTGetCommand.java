@@ -12,16 +12,7 @@ public class DHTGetCommand implements CLICommand {
 	@Override
 	public void execute(String args) {
 		try {
-			AppConfig.timestampedStandardPrint("--------Requesting critical section...");
-			while(!AppConfig.chordState.requestCriticalSection()){
-				try {
-					Thread.sleep(50);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-
-			AppConfig.timestampedStandardPrint("--------Critical section starting...");
+			AppConfig.chordState.obtainCriticalSection();
 
 
 			int key = Integer.parseInt(args);

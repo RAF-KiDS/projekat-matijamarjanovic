@@ -445,6 +445,19 @@ public class ChordState {
 		return false;
 	}
 
+	public void obtainCriticalSection() {
+		AppConfig.timestampedStandardPrint("--------Requesting critical section...");
+		while(!AppConfig.chordState.requestCriticalSection()){
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		AppConfig.timestampedStandardPrint("--------Critical section starting...");;
+	}
+
 	public synchronized void releaseCriticalSection() {
 		unlock();
 	}
@@ -487,6 +500,24 @@ public class ChordState {
 		AskGetMessage agm = new AskGetMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(key));
 		MessageUtil.sendMessage(agm);
 		
+		return -2;
+	}
+
+	public Object removeValue(int key) {
+
+		if (isKeyMine(key)) {
+			if (valueMap.containsKey(key)) {
+				AppConfig.timestampedStandardPrint("Removed <" + key + "," + valueMap.get(key) + ">");
+				return valueMap.remove(key);
+			} else {
+				return -1;
+			}
+		}
+
+		ServentInfo nextNode = getNextNodeForKey(key);
+		RemoveFileMessage rfm = new RemoveFileMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(key));
+		MessageUtil.sendMessage(rfm);
+
 		return -2;
 	}
 

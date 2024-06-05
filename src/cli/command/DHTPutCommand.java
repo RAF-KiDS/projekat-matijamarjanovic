@@ -16,16 +16,7 @@ public class DHTPutCommand implements CLICommand {
 	@Override
 	public void execute(String args) {
 
-		AppConfig.timestampedStandardPrint("--------Requesting critical section...");
-		while(!AppConfig.chordState.requestCriticalSection()){
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-
-		AppConfig.timestampedStandardPrint("--------Critical section starting...");
+		AppConfig.chordState.obtainCriticalSection();
 
 
 		String[] splitArgs = args.split(" ");

@@ -1,0 +1,9 @@
+pause 25000
+remove_file test.txt
+add_friend 36
+add_friend 40
+add_friend 28
+get_file test.txt
+get_file testTwo.txt
+pause 40000
+stop

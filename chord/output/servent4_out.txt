@@ -1,35 +1,82 @@
-02:08:47 - Starting servent [44|localhost|1180]
-02:08:47 - --------Requesting critical section...
-02:08:48 - Sending message [44|1180|0||NEW_NODE|1140|36]
-02:08:52 - Got message [28|1100|6||WELCOME|1180|44]
-02:08:53 - Sending message [44|1180|1||UPDATE|1100|28]
-02:08:55 - Got message [28|1100|11||QUORUM_REQUEST|1180|44]
-02:08:56 - Sending message [44|1180|2|LOCKED|QUORUM_RESPONSE|1100|28]
-02:08:56 - Got message [44|1180|4|1100,1120,1140,1160|UPDATE|1180|44]
-02:08:57 - Sending message [44|1180|3||QUORUM_REQUEST|1100|28]
-02:08:57 - Sending message [44|1180|4||QUORUM_REQUEST|1160|40]
-02:08:58 - Got message [28|1100|12|LOCKED|QUORUM_RESPONSE|1180|44]
-02:08:58 - Got message [40|1160|5|LOCKED|QUORUM_RESPONSE|1180|44]
-02:08:59 - Sending message [44|1180|5||QUORUM_REQUEST|1100|28]
-02:09:00 - Sending message [44|1180|6||QUORUM_REQUEST|1160|40]
-02:09:00 - Got message [40|1160|6|LOCKED|QUORUM_RESPONSE|1180|44]
-02:09:00 - Got message [28|1100|13|LOCKED|QUORUM_RESPONSE|1180|44]
-02:09:00 - --------Critical section starting...
-02:09:00 - --------Requesting critical section...
-02:09:01 - Sending message [44|1180|9||QUORUM_REQUEST|1160|40]
-02:09:01 - Sending message [44|1180|8||QUORUM_REQUEST|1100|28]
-02:09:01 - Sending message [44|1180|7|25:3|PUT|1100|28]
-02:09:02 - Got message [40|1160|7|LOCKED|QUORUM_RESPONSE|1180|44]
-02:09:02 - Got message [28|1100|14|LOCKED|QUORUM_RESPONSE|1180|44]
-02:09:03 - --------Critical section starting...
-02:09:03 - Please wait...
-02:09:03 - --------Critical section ending...
-02:09:03 - Pausing for 60000 ms
-02:09:03 - Sending message [44|1180|10|25|ASK_GET|1100|28]
-02:09:04 - Got message [28|1100|16|25:3|TELL_GET|1180|44]
-02:09:04 - 25:3
-02:09:11 - Got message [40|1160|8|22:test.txt,public,32|PUT|1180|44]
-02:09:11 - Got message [32|1120|9|22|ASK_GET|1180|44]
-02:09:12 - Sending message [44|1180|11|22:public,test.txt,32|PUT|1100|28]
-02:09:12 - Sending message [32|1120|12|22|ASK_GET|1100|28]
-02:10:03 - Stopping...
+16:57:04 - Starting servent [44|localhost|1180]
+16:57:04 - Pausing for 25000 ms
+16:57:05 - Sending message [44|1180|0||NEW_NODE|1120|32]
+16:57:09 - Got message [28|1100|6||WELCOME|1180|44]
+16:57:10 - Sending message [44|1180|1||UPDATE|1100|28]
+16:57:11 - Got message [28|1100|12||QUORUM_REQUEST|1180|44]
+16:57:12 - Sending message [44|1180|2|LOCKED|QUORUM_RESPONSE|1100|28]
+16:57:14 - Got message [44|1180|5|1100,1120,1140,1160|UPDATE|1180|44]
+16:57:15 - Got message [28|1100|16||QUORUM_REQUEST|1180|44]
+16:57:16 - Sending message [44|1180|3|LOCKED|QUORUM_RESPONSE|1100|28]
+16:57:17 - Got message [28|1100|8|28-44-4-6|FRIEND_REQUEST|1180|44]
+16:57:17 - Friend request received...Accepting...
+16:57:17 - >>Friend added: [28|localhost|1100]
+16:57:18 - Sending message [44|1180|4|44-28|FRIEND_ACCEPT|1100|28]
+16:57:19 - Got message [32|1120|10|22|ASK_GET|1180|44]
+16:57:20 - Sending message [32|1120|5|22|ASK_GET|1100|28]
+16:57:29 - --------Requesting critical section...
+16:57:30 - Sending message [44|1180|7||QUORUM_REQUEST|1160|40]
+16:57:30 - Sending message [44|1180|6||QUORUM_REQUEST|1100|28]
+16:57:31 - Got message [28|1100|19|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:31 - Got message [40|1160|11|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:32 - Sending message [44|1180|9||QUORUM_REQUEST|1160|40]
+16:57:32 - Got message [40|1160|12|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:32 - Sending message [44|1180|8||QUORUM_REQUEST|1100|28]
+16:57:33 - Got message [28|1100|20|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:33 - --------Critical section starting...
+16:57:33 - Please wait...
+16:57:33 - --------Critical section ending...
+16:57:33 - --------Requesting critical section...
+16:57:34 - Sending message [44|1180|11||QUORUM_REQUEST|1100|28]
+16:57:34 - Sending message [44|1180|10|22|REMOVE_FILE|1100|28]
+16:57:34 - Sending message [44|1180|12||QUORUM_REQUEST|1160|40]
+16:57:34 - Got message [28|1100|21|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:35 - Got message [40|1160|13|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:35 - --------Critical section starting...
+16:57:35 - --------Requesting critical section...
+16:57:36 - Sending message [44|1180|14||QUORUM_REQUEST|1100|28]
+16:57:36 - Sending message [44|1180|13|44-36-6|FRIEND_REQUEST|1100|28]
+16:57:36 - Sending message [44|1180|15||QUORUM_REQUEST|1160|40]
+16:57:37 - Got message [28|1100|22|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:37 - Got message [40|1160|14|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:38 - --------Critical section starting...
+16:57:38 - --------Requesting critical section...
+16:57:38 - Sending message [44|1180|17||QUORUM_REQUEST|1100|28]
+16:57:39 - Sending message [44|1180|18||QUORUM_REQUEST|1160|40]
+16:57:39 - Got message [28|1100|24|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:39 - Sending message [44|1180|16|44-40-6|FRIEND_REQUEST|1100|28]
+16:57:40 - Got message [36|1140|16|36-44|FRIEND_ACCEPT|1180|44]
+16:57:40 - Friend accept received...Accepting...
+16:57:40 - >>Friend added: [36|localhost|1140]
+16:57:40 - Got message [40|1160|15|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:40 - --------Critical section starting...
+16:57:40 - --------Requesting critical section...
+16:57:41 - Sending message [44|1180|19|44-28-6|FRIEND_REQUEST|1100|28]
+16:57:41 - Sending message [44|1180|20||QUORUM_REQUEST|1100|28]
+16:57:41 - Sending message [44|1180|21||QUORUM_REQUEST|1160|40]
+16:57:42 - Got message [40|1160|16|40-44|FRIEND_ACCEPT|1180|44]
+16:57:42 - Friend accept received...Accepting...
+16:57:42 - >>Friend added: [40|localhost|1160]
+16:57:42 - Got message [28|1100|26|28-44|FRIEND_ACCEPT|1180|44]
+16:57:42 - Friend accept received...Accepting...
+16:57:42 - Got message [28|1100|27|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:43 - Got message [40|1160|17|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:43 - --------Critical section starting...
+16:57:43 - Please wait...
+16:57:43 - --------Critical section ending...
+16:57:43 - --------Requesting critical section...
+16:57:44 - Sending message [44|1180|23||QUORUM_REQUEST|1100|28]
+16:57:44 - Sending message [44|1180|24||QUORUM_REQUEST|1160|40]
+16:57:44 - Sending message [44|1180|22|22|ASK_GET|1100|28]
+16:57:44 - Got message [28|1100|28|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:45 - Got message [40|1160|18|LOCKED|QUORUM_RESPONSE|1180|44]
+16:57:45 - --------Critical section starting...
+16:57:45 - Please wait...
+16:57:45 - --------Critical section ending...
+16:57:45 - Pausing for 40000 ms
+16:57:45 - Got message [28|1100|29|22:-1|TELL_GET|1180|44]
+16:57:45 - No such key: 22
+16:57:45 - Sending message [44|1180|25|40|ASK_GET|1100|28]
+16:57:49 - Got message [40|1160|19|40:private,testTwo.txt,36|TELL_GET|1180|44]
+16:57:49 - 40 -> testTwo.txt,private,36
+16:58:25 - Stopping...
