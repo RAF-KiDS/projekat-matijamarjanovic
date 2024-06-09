@@ -23,8 +23,8 @@ public class TellGetHandler implements MessageHandler {
 					int key = Integer.parseInt(parts[0]);
 
 					if(parts[1].split(",").length == 3) {
-						String privacy = parts[1].split(",")[0];
-						String path = parts[1].split(",")[1];
+						String privacy = parts[1].split(",")[1];
+						String path = parts[1].split(",")[0];
 						String creatorId = parts[1].split(",")[2];
 						Object value = new ChordFile(privacy, path, Integer.parseInt(creatorId));
 

@@ -5,14 +5,14 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import servent.message.*;
 import servent.message.quorumMessages.QuorumRequestMessage;
+import servent.message.removeFile.RemoveFileFromCreatorMessage;
+import servent.message.removeFile.RemoveFileMessage;
 import servent.message.util.MessageUtil;
 import servent.model.ChordFile;
 
@@ -54,7 +54,7 @@ public class ChordState {
 	private List<ServentInfo> quorum;
 	private Map<Integer, Object> valueMap;
 
-	private List<Object> myFiles;
+	private Map<Integer, Object> myFiles;
 
 	private Map<Integer, Boolean> quorumResponses;
 
@@ -91,7 +91,7 @@ public class ChordState {
 		checkCleared = new AtomicBoolean(false);
 		friendList = new CopyOnWriteArrayList<>();
 
-		myFiles = new CopyOnWriteArrayList<>();
+		myFiles = new HashMap<>();
 	}
 	
 	/**
@@ -344,10 +344,12 @@ public class ChordState {
 	}
 
 	public void addToMyFiles(ChordFile chordFile) {
-		myFiles.add(chordFile);
+		if(!myFiles.containsValue(chordFile)){
+			myFiles.put(chordFile.getChordId(), chordFile);
+		}
 	}
 
-	public List<Object> getMyFiles() {
+	public Map<Integer, Object> getMyFiles() {
 		return myFiles;
 	}
 
@@ -571,6 +573,8 @@ public class ChordState {
 
 	public Object removeValue(int key) {
 
+		//removeValueFromCreator(key);
+
 		if (isKeyMine(key)) {
 			if (valueMap.containsKey(key)) {
 				AppConfig.timestampedStandardPrint("Removed <" + key + "," + valueMap.get(key) + ">");
@@ -583,6 +587,27 @@ public class ChordState {
 		ServentInfo nextNode = getNextNodeForKey(key);
 		RemoveFileMessage rfm = new RemoveFileMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(key));
 		MessageUtil.sendMessage(rfm);
+
+		return -2;
+	}
+
+	public boolean isMyFile(int key) {
+		if(myFiles.containsKey(key)){
+			return true;
+		}
+		return false;
+	}
+
+	public Object removeValueFromCreator(int key) {
+
+		if (isMyFile(key)) {
+			return myFiles.remove(key);
+		}
+
+		ServentInfo nextNode = getNextNodeForKey(key);
+		RemoveFileFromCreatorMessage rfm = new RemoveFileFromCreatorMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(key));
+		MessageUtil.sendMessage(rfm);
+
 
 		return -2;
 	}

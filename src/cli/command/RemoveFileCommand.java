@@ -29,10 +29,8 @@ public class RemoveFileCommand implements CLICommand{
         } else if ((Integer)val == -1) {
             AppConfig.timestampedStandardPrint("No such key: " + key);
         } else {
-            AppConfig.timestampedErrorPrint("Got <" + key + "," + val + ">");
-            AppConfig.timestampedStandardPrint(key + ": " + val);
-        }
-
+            AppConfig.timestampedErrorPrint("Removed <" + key + "," + val + "> from system");
+            AppConfig.timestampedStandardPrint("Removed <" + key + "," + val + "> from system");        }
 
         AppConfig.timestampedStandardPrint("--------Critical section ending...");
 

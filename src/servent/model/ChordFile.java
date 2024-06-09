@@ -88,8 +88,6 @@ public class ChordFile {
                 fos.write(buffer, 0, length);
             }
 
-            System.out.println("File uploaded and saved successfully at " + targetPath);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

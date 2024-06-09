@@ -28,8 +28,8 @@ public class PutHandler implements MessageHandler {
 					key = Integer.parseInt(splitText[0]);
 
 					if(splitText[1].split(",").length == 3) {
-						String privacy = splitText[1].split(",")[0];
-						String path = splitText[1].split(",")[1];
+						String privacy = splitText[1].split(",")[1];
+						String path = splitText[1].split(",")[0];
 						String creatorId = splitText[1].split(",")[2];
 						value = new ChordFile(privacy, path, Integer.parseInt(creatorId));
 

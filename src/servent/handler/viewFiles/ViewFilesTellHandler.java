@@ -18,11 +18,11 @@ public class ViewFilesTellHandler implements MessageHandler {
     @Override
     public void run() {
         try{
-            String requestedFiles = clientMessage.getMessageText().split(";")[0];
             int targetKey = Integer.parseInt(clientMessage.getMessageText().split(";")[1]);
 
             //ako sam ja trazio - print
             if(AppConfig.myServentInfo.getChordId() == targetKey){
+                String requestedFiles = clientMessage.getMessageText().split(";")[0];
                 AppConfig.timestampedStandardPrint("Files on node " + targetKey + ":");
                 AppConfig.timestampedStandardPrint(requestedFiles);
                 return;

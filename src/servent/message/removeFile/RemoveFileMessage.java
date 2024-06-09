@@ -1,4 +1,7 @@
-package servent.message;
+package servent.message.removeFile;
+
+import servent.message.BasicMessage;
+import servent.message.MessageType;
 
 public class RemoveFileMessage extends BasicMessage {
 
