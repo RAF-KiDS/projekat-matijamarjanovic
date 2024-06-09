@@ -6,6 +6,8 @@ import servent.message.viewFiles.ViewFilesMessage;
 import servent.message.util.MessageUtil;
 import servent.model.ChordFile;
 
+import java.util.Map;
+
 public class ViewFilesCommand implements CLICommand{
     @Override
     public String commandName() {
@@ -41,14 +43,14 @@ public class ViewFilesCommand implements CLICommand{
                 if (AppConfig.chordState.getMyFiles().size() > 0){
                     AppConfig.timestampedStandardPrint("Files on node " + key + ":");
                     String toPrint = "";
-                    for (Object chordFile : AppConfig.chordState.getMyFiles()) {
 
+                    for(Map.Entry<Integer, Object> entry : AppConfig.chordState.getMyFiles().entrySet()){
                         //ako listam svoje fajlove nema provere za private i public
-                        if (chordFile instanceof ChordFile) {
-                                toPrint += ((ChordFile) chordFile).getFileName() + " - chordId: " + ((ChordFile) chordFile).getChordId() + "\n";
+                        if (entry.getValue() instanceof ChordFile) {
+                            toPrint += ((ChordFile) entry.getValue()).getFileName() + " - chordId: " + ((ChordFile) entry.getValue()).getChordId() + "\n";
                         }
-
                     }
+
                     AppConfig.timestampedStandardPrint(toPrint);
 
                 }else {

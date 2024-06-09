@@ -10,6 +10,8 @@ import servent.message.util.MessageUtil;
 import servent.message.viewFiles.ViewFilesTellMessage;
 import servent.model.ChordFile;
 
+import java.util.Map;
+
 public class ViewFilesHandler implements MessageHandler {
 
     private Message clientMessage;
@@ -34,15 +36,15 @@ public class ViewFilesHandler implements MessageHandler {
             if(AppConfig.myServentInfo.getChordId() == targetKey){
                 if (AppConfig.chordState.getMyFiles().size() > 0) {
                     String requestedFiles = "";
-                    for (Object chordFile : AppConfig.chordState.getMyFiles()) {
+                    for (Map.Entry chordFile : AppConfig.chordState.getMyFiles().entrySet()) {
 
-                        if (chordFile instanceof ChordFile) {
+                        if (chordFile.getValue() instanceof ChordFile) {
                             //ako je public vide ga svi
-                            if((((ChordFile) chordFile).getPrivacy().equals("public"))) {
-                                requestedFiles += "\n" + ((ChordFile) chordFile).getFileName() + " - chordId: " + ((ChordFile) chordFile).getChordId();
-                            } else if ((((ChordFile) chordFile).getPrivacy().equals("private"))) { //ako je private proveri da li su prijatelji
+                            if((((ChordFile) chordFile.getValue()).getPrivacy().equals("public"))) {
+                                requestedFiles += "\n--:--:-- - " + ((ChordFile) chordFile.getValue()).getFileName() + " - chordId: " + ((ChordFile) chordFile.getValue()).getChordId();
+                            } else if ((((ChordFile) chordFile.getValue()).getPrivacy().equals("private"))) { //ako je private proveri da li su prijatelji
                                 if(AppConfig.chordState.isFriend(senderKey)){ //da li su prijatelji
-                                    requestedFiles += "\n" + ((ChordFile) chordFile).getFileName() + " - chordId: " + ((ChordFile) chordFile).getChordId();
+                                    requestedFiles += "\n--:--:-- - " + ((ChordFile) chordFile.getValue()).getFileName() + " - chordId: " + ((ChordFile) chordFile.getValue()).getChordId();
                                 }
                             }else{
                                 throw new Exception("Invalid privacy type");

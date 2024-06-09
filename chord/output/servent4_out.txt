@@ -1,75 +1,89 @@
-23:11:46 - Starting servent [44|localhost|1180]
-23:11:46 - Pausing for 30000 ms
-23:11:47 - Sending message [44|1180|0||NEW_NODE|1100|28]
-23:11:48 - Got message [28|1100|6||WELCOME|1180|44]
-23:11:49 - Sending message [44|1180|1||UPDATE|1100|28]
-23:11:52 - Got message [28|1100|9||QUORUM_REQUEST|1180|44]
-23:11:53 - Sending message [44|1180|2|LOCKED|QUORUM_RESPONSE|1100|28]
-23:11:55 - Got message [44|1180|2|1100,1120,1140,1160|UPDATE|1180|44]
-23:11:56 - Got message [28|1100|12||QUORUM_REQUEST|1180|44]
-23:11:57 - Sending message [44|1180|3|LOCKED|QUORUM_RESPONSE|1100|28]
-23:11:58 - Got message [28|1100|16||QUORUM_REQUEST|1180|44]
-23:11:58 - Got message [40|1160|3|22:test.txt,private,32|PUT|1180|44]
-23:11:59 - Sending message [44|1180|4|LOCKED|QUORUM_RESPONSE|1100|28]
-23:11:59 - Sending message [44|1180|5|22:private,test.txt,32|PUT|1100|28]
-23:12:00 - Got message [28|1100|5|28-44-4-6|FRIEND_REQUEST|1180|44]
-23:12:00 - Friend request received...Accepting...
-23:12:00 - >>Friend added: [28|localhost|1100]
-23:12:00 - Got message [36|1140|13|46:testThree.txt,private,36|PUT|1180|44]
-23:12:01 - Sending message [44|1180|6|44-28|FRIEND_ACCEPT|1100|28]
-23:12:01 - Sending message [44|1180|7|46:private,testThree.txt,36|PUT|1100|28]
-23:12:02 - Got message [32|1120|6|32-44-5-6|FRIEND_REQUEST|1180|44]
-23:12:02 - Friend request received...Accepting...
-23:12:02 - >>Friend added: [32|localhost|1120]
-23:12:03 - Sending message [44|1180|8|44-32|FRIEND_ACCEPT|1120|32]
-23:12:06 - Got message [32|1120|7|22|ASK_GET|1180|44]
-23:12:07 - Sending message [32|1120|9|22|ASK_GET|1100|28]
-23:12:16 - --------Requesting critical section...
-23:12:17 - Sending message [44|1180|11||QUORUM_REQUEST|1160|40]
-23:12:17 - Sending message [44|1180|10||QUORUM_REQUEST|1100|28]
-23:12:18 - Got message [40|1160|8|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:19 - Got message [28|1100|21|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:20 - Sending message [44|1180|13||QUORUM_REQUEST|1160|40]
-23:12:20 - Sending message [44|1180|12||QUORUM_REQUEST|1100|28]
-23:12:21 - Got message [40|1160|9|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:21 - Got message [28|1100|22|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:21 - --------Critical section starting...
-23:12:21 - --------Requesting critical section...
-23:12:22 - Sending message [44|1180|14|44-36-6|FRIEND_REQUEST|1100|28]
-23:12:22 - Sending message [44|1180|16||QUORUM_REQUEST|1160|40]
-23:12:22 - Sending message [44|1180|15||QUORUM_REQUEST|1100|28]
-23:12:23 - Got message [28|1100|24|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:24 - Got message [40|1160|10|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:24 - --------Critical section starting...
-23:12:24 - --------Requesting critical section...
-23:12:24 - Sending message [44|1180|17|44-40-6|FRIEND_REQUEST|1100|28]
-23:12:25 - Sending message [44|1180|18||QUORUM_REQUEST|1100|28]
-23:12:25 - Sending message [44|1180|19||QUORUM_REQUEST|1160|40]
-23:12:25 - Got message [28|1100|26|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:26 - Got message [36|1140|17|36-44|FRIEND_ACCEPT|1180|44]
-23:12:26 - Friend accept received...Accepting...
-23:12:26 - >>Friend added: [36|localhost|1140]
-23:12:26 - Got message [40|1160|11|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:26 - --------Critical section starting...
-23:12:26 - --------Requesting critical section...
-23:12:27 - Sending message [44|1180|22||QUORUM_REQUEST|1160|40]
-23:12:27 - Sending message [44|1180|20|44-28-6|FRIEND_REQUEST|1100|28]
-23:12:27 - Sending message [44|1180|21||QUORUM_REQUEST|1100|28]
-23:12:27 - Got message [40|1160|12|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:28 - Got message [28|1100|28|LOCKED|QUORUM_RESPONSE|1180|44]
-23:12:28 - --------Critical section starting...
-23:12:28 - Pausing for 60000 ms
-23:12:28 - Got message [28|1100|27|28-44|FRIEND_ACCEPT|1180|44]
-23:12:28 - Friend accept received...Accepting...
-23:12:28 - Got message [40|1160|13|40-44|FRIEND_ACCEPT|1180|44]
-23:12:28 - Friend accept received...Accepting...
-23:12:28 - >>Friend added: [40|localhost|1160]
-23:12:29 - Sending message [44|1180|23|32:44|VIEW_FILES|1100|28]
-23:12:32 - Got message [44|1180|14|
-test.txt - chordId: 22
-testTwo.txt - chordId: 40;44|VIEW_FILES_TELL|1180|44]
-23:12:32 - Files on node 44:
-23:12:32 - 
-test.txt - chordId: 22
-testTwo.txt - chordId: 40
-23:13:28 - Stopping...
+17:32:11 - Starting servent [44|localhost|1180]
+17:32:11 - Pausing for 30000 ms
+17:32:12 - Sending message [44|1180|0||NEW_NODE|1100|28]
+17:32:13 - Got message [28|1100|6||WELCOME|1180|44]
+17:32:14 - Sending message [44|1180|1||UPDATE|1100|28]
+17:32:17 - Got message [28|1100|9||QUORUM_REQUEST|1180|44]
+17:32:18 - Got message [44|1180|2|1100,1120,1140,1160|UPDATE|1180|44]
+17:32:19 - Sending message [44|1180|2|LOCKED|QUORUM_RESPONSE|1100|28]
+17:32:20 - Got message [28|1100|14||QUORUM_REQUEST|1180|44]
+17:32:20 - Sending message [44|1180|3|LOCKED|QUORUM_RESPONSE|1100|28]
+17:32:21 - Got message [40|1160|3|22:test.txt,private,32|PUT|1180|44]
+17:32:22 - Got message [28|1100|4|28-44-4-6|FRIEND_REQUEST|1180|44]
+17:32:22 - Friend request received...Accepting...
+17:32:22 - >>Friend added: [28|localhost|1100]
+17:32:22 - Sending message [44|1180|4|22:test.txt,private,32|PUT|1100|28]
+17:32:23 - Sending message [44|1180|5|44-28|FRIEND_ACCEPT|1100|28]
+17:32:25 - Got message [32|1120|7|32-44-5-6|FRIEND_REQUEST|1180|44]
+17:32:25 - Friend request received...Accepting...
+17:32:25 - >>Friend added: [32|localhost|1120]
+17:32:25 - Sending message [44|1180|6|44-32|FRIEND_ACCEPT|1120|32]
+17:32:26 - Got message [36|1140|15|46:testThree.txt,private,36|PUT|1180|44]
+17:32:27 - Sending message [44|1180|7|46:testThree.txt,private,36|PUT|1100|28]
+17:32:28 - Got message [32|1120|9|22|ASK_GET|1180|44]
+17:32:29 - Got message [40|1160|10|22|REMOVE_FILE_CREATOR|1180|44]
+17:32:29 - Got message [40|1160|12|22|REMOVE_FILE|1180|44]
+17:32:29 - Sending message [32|1120|8|22|ASK_GET|1100|28]
+17:32:29 - Got message [40|1160|11|22|REMOVE_FILE_CREATOR|1180|44]
+17:32:30 - Sending message [44|1180|9|22|REMOVE_FILE_CREATOR|1100|28]
+17:32:30 - Sending message [44|1180|10|22|REMOVE_FILE_CREATOR|1100|28]
+17:32:31 - Sending message [44|1180|11|22|REMOVE_FILE|1100|28]
+17:32:31 - Sending message [44|1180|12|22|REMOVE_FILE_CREATOR|1100|28]
+17:32:41 - --------Requesting critical section...
+17:32:42 - Sending message [44|1180|14||QUORUM_REQUEST|1160|40]
+17:32:42 - Sending message [44|1180|13||QUORUM_REQUEST|1100|28]
+17:32:43 - Got message [40|1160|13|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:43 - Got message [28|1100|71|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:44 - Sending message [44|1180|15||QUORUM_REQUEST|1100|28]
+17:32:44 - Sending message [44|1180|16||QUORUM_REQUEST|1160|40]
+17:32:45 - Got message [28|1100|81|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:45 - Got message [40|1160|14|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:45 - --------Critical section starting...
+17:32:45 - --------Requesting critical section...
+17:32:46 - Sending message [44|1180|19||QUORUM_REQUEST|1160|40]
+17:32:46 - Sending message [44|1180|18||QUORUM_REQUEST|1100|28]
+17:32:47 - Sending message [44|1180|17|44-36-6|FRIEND_REQUEST|1100|28]
+17:32:47 - Got message [40|1160|15|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:48 - Got message [28|1100|92|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:48 - --------Critical section starting...
+17:32:48 - --------Requesting critical section...
+17:32:49 - Sending message [44|1180|20|44-40-6|FRIEND_REQUEST|1100|28]
+17:32:49 - Sending message [44|1180|22||QUORUM_REQUEST|1160|40]
+17:32:49 - Sending message [44|1180|21||QUORUM_REQUEST|1100|28]
+17:32:49 - Got message [36|1140|21|36-44|FRIEND_ACCEPT|1180|44]
+17:32:49 - Friend accept received...Accepting...
+17:32:49 - >>Friend added: [36|localhost|1140]
+17:32:50 - Got message [40|1160|16|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:50 - Got message [28|1100|105|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:50 - --------Critical section starting...
+17:32:50 - --------Requesting critical section...
+17:32:51 - Sending message [44|1180|25||QUORUM_REQUEST|1160|40]
+17:32:51 - Sending message [44|1180|23|44-28-6|FRIEND_REQUEST|1100|28]
+17:32:51 - Sending message [44|1180|24||QUORUM_REQUEST|1100|28]
+17:32:52 - Got message [40|1160|17|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:52 - Got message [28|1100|114|28-44|FRIEND_ACCEPT|1180|44]
+17:32:52 - Friend accept received...Accepting...
+17:32:52 - Got message [40|1160|18|40-44|FRIEND_ACCEPT|1180|44]
+17:32:52 - Friend accept received...Accepting...
+17:32:52 - >>Friend added: [40|localhost|1160]
+17:32:52 - Got message [28|1100|115|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:53 - --------Critical section starting...
+17:32:53 - Please wait...
+17:32:53 - --------Critical section ending...
+17:32:53 - --------Requesting critical section...
+17:32:54 - Sending message [44|1180|26|22|ASK_GET|1100|28]
+17:32:54 - Sending message [44|1180|28||QUORUM_REQUEST|1160|40]
+17:32:54 - Sending message [44|1180|27||QUORUM_REQUEST|1100|28]
+17:32:55 - Got message [28|1100|127|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:55 - Got message [28|1100|125|22:-1|TELL_GET|1180|44]
+17:32:55 - No such key: 22
+17:32:55 - Got message [40|1160|19|LOCKED|QUORUM_RESPONSE|1180|44]
+17:32:55 - --------Critical section starting...
+17:32:55 - Pausing for 60000 ms
+17:32:56 - Sending message [44|1180|29|32:44|VIEW_FILES|1100|28]
+17:32:59 - Got message [44|1180|20|text too long|VIEW_FILES_TELL|1180|44]
+17:32:59 - Files on node 44:
+17:32:59 - 
+--:--:-- - test.txt - chordId: 22
+--:--:-- - testTwo.txt - chordId: 40
+17:33:55 - Stopping...

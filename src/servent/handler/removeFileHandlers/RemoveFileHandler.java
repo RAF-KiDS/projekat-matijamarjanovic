@@ -1,8 +1,10 @@
-package servent.handler;
+package servent.handler.removeFileHandlers;
 
 import app.AppConfig;
 import app.ServentInfo;
+import servent.handler.MessageHandler;
 import servent.message.*;
+import servent.message.removeFile.RemoveFileMessage;
 import servent.message.util.MessageUtil;
 
 import java.util.Map;
@@ -20,7 +22,7 @@ public class RemoveFileHandler implements MessageHandler {
         if (clientMessage.getMessageType() == MessageType.REMOVE_FILE) {
             try {
                 int key = Integer.parseInt(clientMessage.getMessageText());
-                if (AppConfig.chordState.isKeyMine(key)) {
+/*                if (AppConfig.chordState.isKeyMine(key)) {
                     Map<Integer, Object> valueMap = AppConfig.chordState.getValueMap();
                     Object value = -1;
 
@@ -38,14 +40,16 @@ public class RemoveFileHandler implements MessageHandler {
                     RemoveFileMessage rfm = new RemoveFileMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(key));
                     MessageUtil.sendMessage(rfm);
 
-                }
+                }*/
+                AppConfig.chordState.removeValue(key);
+
 
             } catch (NumberFormatException e) {
                 AppConfig.timestampedErrorPrint("Got ask get with bad text: " + clientMessage.getMessageText());
             }
 
         } else {
-            AppConfig.timestampedErrorPrint("Ask get handler got a message that is not ASK_GET");
+            AppConfig.timestampedErrorPrint("Ask get handler got a message that is not REMOVE_FILE");
         }
     }
 }
