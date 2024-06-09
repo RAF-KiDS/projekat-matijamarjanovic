@@ -1,4 +1,5 @@
-22:54:23 - Got <22,test.txt,private,32>
+00:46:59 - Couldn't send message: [32|1120|65||PING|1160|40]
+00:47:03 - Couldn't send message: [32|1120|68||ALIVE|1160|40]
 Exception in thread "Thread-2" java.util.NoSuchElementException: No line found
 	at java.base/java.util.Scanner.nextLine(Scanner.java:1677)
 	at cli.CLIParser.run(CLIParser.java:58)

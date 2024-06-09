@@ -12,7 +12,7 @@ public class GetFileCommand implements CLICommand{
     @Override
     public void execute(String args) {
 
-        AppConfig.chordState.obtainCriticalSection();
+        AppConfig.chordState.obtainCriticalSection(this, args);
 
 
         if (args.split(" ").length != 1) {

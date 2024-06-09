@@ -1,2 +1,3 @@
-pause 30000
+pause 20000
+view_files localhost:1120
 stop

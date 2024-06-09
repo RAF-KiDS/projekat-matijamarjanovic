@@ -16,7 +16,7 @@ public class DHTPutCommand implements CLICommand {
 	@Override
 	public void execute(String args) {
 
-		AppConfig.chordState.obtainCriticalSection();
+		AppConfig.chordState.obtainCriticalSection(this, args);
 
 
 		String[] splitArgs = args.split(" ");

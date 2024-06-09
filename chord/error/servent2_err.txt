@@ -1,6 +1,24 @@
-22:54:33 - Couldn't send message: [36|1140|51||PING|1160|40]
-22:54:36 - Couldn't send message: [36|1140|53||ALIVE|1160|40]
+00:46:57 - Couldn't send message: [36|1140|53||PING|1160|40]
+00:47:01 - Couldn't send message: [36|1140|54||ALIVE|1160|40]
+00:47:07 - Couldn't send message: [36|1140|56||PING|1160|40]
+00:47:11 - Couldn't send message: [36|1140|57||ALIVE|1160|40]
+00:47:17 - Couldn't send message: [36|1140|59||PING|1160|40]
+00:47:21 - Couldn't send message: [36|1140|60||ALIVE|1160|40]
 Exception in thread "Thread-2" java.util.NoSuchElementException: No line found
 	at java.base/java.util.Scanner.nextLine(Scanner.java:1677)
 	at cli.CLIParser.run(CLIParser.java:58)
 	at java.base/java.lang.Thread.run(Thread.java:1570)
+00:47:28 - Couldn't send message: [36|1140|62||PING|1160|40]
+00:47:32 - Couldn't send message: [36|1140|63||ALIVE|1160|40]
+00:47:38 - Couldn't send message: [36|1140|65||PING|1160|40]
+00:47:41 - Couldn't send message: [36|1140|66||ALIVE|1160|40]
+00:47:47 - Couldn't send message: [36|1140|68||PING|1160|40]
+00:47:52 - Couldn't send message: [36|1140|69||ALIVE|1160|40]
+00:47:58 - Couldn't send message: [36|1140|71||PING|1160|40]
+00:48:02 - Couldn't send message: [36|1140|72||ALIVE|1160|40]
+00:48:07 - Couldn't send message: [36|1140|74||PING|1160|40]
+00:48:12 - Couldn't send message: [36|1140|75||ALIVE|1160|40]
+00:48:18 - Couldn't send message: [36|1140|77||PING|1160|40]
+00:48:21 - Couldn't send message: [36|1140|78||ALIVE|1160|40]
+00:48:27 - Couldn't send message: [36|1140|80||PING|1160|40]
+00:48:32 - Couldn't send message: [36|1140|81||ALIVE|1160|40]

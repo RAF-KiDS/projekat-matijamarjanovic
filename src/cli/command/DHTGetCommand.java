@@ -12,7 +12,7 @@ public class DHTGetCommand implements CLICommand {
 	@Override
 	public void execute(String args) {
 		try {
-			AppConfig.chordState.obtainCriticalSection();
+			AppConfig.chordState.obtainCriticalSection(this, args);
 
 
 			int key = Integer.parseInt(args);

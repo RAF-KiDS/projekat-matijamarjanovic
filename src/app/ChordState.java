@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import cli.command.CLICommand;
 import servent.message.*;
 import servent.message.failProof.RemoveNodeMessage;
 import servent.message.quorumMessages.QuorumRequestMessage;
@@ -67,7 +68,8 @@ public class ChordState {
 
 	private static List<ServentInfo> friendList;
 
-
+	private CLICommand commandInProgress = null;
+	private String commandArgs = null;
 
 	public ChordState() {
 		this.chordLevel = 1;
@@ -316,6 +318,12 @@ public class ChordState {
 		systemInConstruction.set(false);
 	}
 
+	public void executeCommandInProgress() {
+		if (commandInProgress != null && commandArgs != null) {
+			commandInProgress.execute(commandArgs);
+		}
+	}
+
 	public void removeNode(int predecessorPort) {
 		systemInConstruction.set(true);
 		ServentInfo node = null;
@@ -524,7 +532,9 @@ public class ChordState {
 	}
 
 
-	public boolean requestCriticalSection() {
+	public boolean requestCriticalSection(CLICommand command, String args) {
+		commandInProgress = command;
+		commandArgs = args;
 		//AppConfig.timestampedStandardPrint(">>>>>>>>>>>>Quorum size: " + getQuorumSize() + " | quorum: " + quorum);
 		quorumResponses.clear();
 
@@ -546,7 +556,7 @@ public class ChordState {
 					AppConfig.timestampedErrorPrint("<<<<<<<<<<<<<Quorum request timed out. Retrying...");
 					unlock(); // Unlock before retrying
 					Thread.sleep(new Random().nextInt(1000)); // Random backoff
-					return requestCriticalSection(); // Retry the request
+					return requestCriticalSection(command, args); // Retry the request
 				}
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
@@ -569,9 +579,9 @@ public class ChordState {
 		return false;
 	}
 
-	public void obtainCriticalSection() {
+	public void obtainCriticalSection(CLICommand command, String args) {
 		AppConfig.timestampedStandardPrint("--------Requesting critical section...");
-		while(!AppConfig.chordState.requestCriticalSection()){
+		while(!AppConfig.chordState.requestCriticalSection(command, args)){
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
@@ -583,6 +593,8 @@ public class ChordState {
 	}
 
 	public synchronized void releaseCriticalSection() {
+		commandInProgress = null;
+		commandArgs = null;
 		unlock();
 	}
 

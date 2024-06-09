@@ -127,6 +127,9 @@ public class BuddySystem implements Runnable{
                     if(portToSend == predecessorPort)
                         continue;
 
+                    //odradi komandu koja je izgubljena
+                    AppConfig.chordState.executeCommandInProgress();
+
                     RemoveNodeMessage rnm = new RemoveNodeMessage(AppConfig.myServentInfo.getListenerPort(), portToSend, predecessorPort);
                     MessageUtil.sendMessage(rnm);
                 }

@@ -1,6 +1,6 @@
-22:54:15 - Stored <22,test.txt,private,32> : servent.model.ChordFile
-22:54:16 - Stored <2,5> : java.lang.Integer
-22:54:19 - Stored <46,testThree.txt,private,36> : servent.model.ChordFile
+00:46:38 - Stored <2,5> : java.lang.Integer
+00:46:41 - Stored <22,test.txt,private,32> : servent.model.ChordFile
+00:46:42 - Stored <46,testThree.txt,private,36> : servent.model.ChordFile
 Exception in thread "Thread-2" java.util.NoSuchElementException: No line found
 	at java.base/java.util.Scanner.nextLine(Scanner.java:1677)
 	at cli.CLIParser.run(CLIParser.java:58)

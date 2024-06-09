@@ -33,7 +33,7 @@ public class FriendAcceptHandler implements MessageHandler {
 
                 if (AppConfig.myServentInfo.getChordId() == targetKey) { //ako je poruka stigla do trazenog cvora
 
-                    AppConfig.timestampedStandardPrint("Friend accept received...Accepting...");
+                    AppConfig.timestampedStandardPrint("Friend accept received...Accepting..." + targetKey);
 
                     //dodaj cvor u prijatelje
                     AppConfig.chordState.addFriend(senderKey);

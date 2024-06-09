@@ -14,7 +14,7 @@ public class AddFriendCommand implements CLICommand {
     @Override
     public void execute(String args) {
         try {
-            AppConfig.chordState.obtainCriticalSection();
+            AppConfig.chordState.obtainCriticalSection(this, args);
 
             if(args.split(" ").length != 1) {
                 AppConfig.timestampedErrorPrint("Invalid number of arguments for add_friend command. Should be: add_friend key");
