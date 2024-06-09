@@ -10,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import servent.message.*;
+import servent.message.failProof.RemoveNodeMessage;
 import servent.message.quorumMessages.QuorumRequestMessage;
 import servent.message.removeFile.RemoveFileFromCreatorMessage;
 import servent.message.removeFile.RemoveFileMessage;
@@ -45,6 +46,7 @@ public class ChordState {
 	public static int chordHash(int value) {
 		return 61 * value % CHORD_SIZE;
 	}
+	private AtomicBoolean systemInConstruction = new AtomicBoolean(false);
 	private int chordLevel; //log_2(CHORD_SIZE)
 	private ServentInfo[] successorTable;
 	private ServentInfo predecessorInfo;
@@ -64,6 +66,7 @@ public class ChordState {
 	private final Integer lockKey = -8;
 
 	private static List<ServentInfo> friendList;
+
 
 
 	public ChordState() {
@@ -161,6 +164,18 @@ public class ChordState {
 	
 	public void setValueMap(Map<Integer, Object> valueMap) {
 		this.valueMap = valueMap;
+	}
+
+	public void setSystemInConstruction(boolean systemInConstruction){
+		this.systemInConstruction.set(systemInConstruction);
+	}
+
+	public AtomicBoolean getSystemInConstruction() {
+		return systemInConstruction;
+	}
+
+	public List<ServentInfo> getAllNodeInfo() {
+		return allNodeInfo;
 	}
 
 	public boolean isCollision(int chordId) {
@@ -297,7 +312,50 @@ public class ChordState {
 				}
 			}
 		}
-		
+
+		systemInConstruction.set(false);
+	}
+
+	public void removeNode(int predecessorPort) {
+		systemInConstruction.set(true);
+		ServentInfo node = null;
+		for(ServentInfo si : allNodeInfo){
+			if(si.getListenerPort() == predecessorPort){
+				node = si;
+				break;
+			}
+		}
+
+		if(node != null){
+			allNodeInfo.remove(node);
+		}else{
+			return;
+		}
+		allNodeInfo.sort(Comparator.comparingInt(ServentInfo::getChordId));
+
+		List<ServentInfo> newList = new ArrayList<>();
+		List<ServentInfo> newList2 = new ArrayList<>();
+
+		int myId = AppConfig.myServentInfo.getChordId();
+		for (ServentInfo serventInfo : allNodeInfo) {
+			if (serventInfo.getChordId() < myId) {
+				newList2.add(serventInfo);
+			} else {
+				newList.add(serventInfo);
+			}
+		}
+
+		allNodeInfo.clear();
+		allNodeInfo.addAll(newList);
+		allNodeInfo.addAll(newList2);
+		if (newList2.size() > 0) {
+			predecessorInfo = newList2.get(newList2.size()-1);
+		} else {
+			predecessorInfo = newList.get(newList.size()-1);
+		}
+
+		updateSuccessorTable();
+		createQuorum();
 	}
 
 	/**
@@ -306,15 +364,16 @@ public class ChordState {
 	 * 
 	 */
 	public void addNodes(List<ServentInfo> newNodes) {
+		systemInConstruction.set(true);
 		allNodeInfo.addAll(newNodes);
 		
 		allNodeInfo.sort(new Comparator<ServentInfo>() {
-			
+
 			@Override
 			public int compare(ServentInfo o1, ServentInfo o2) {
 				return o1.getChordId() - o2.getChordId();
 			}
-			
+
 		});
 		
 		List<ServentInfo> newList = new ArrayList<>();
@@ -501,7 +560,7 @@ public class ChordState {
 		//AppConfig.timestampedStandardPrint("==============All responses received, checking...==============");
 
 
-		if(isCheckCleared().get()){
+		if(isCheckCleared().get() && !systemInConstruction.get()){
 			checkCleared = new AtomicBoolean(false);
 			return true;
 		}

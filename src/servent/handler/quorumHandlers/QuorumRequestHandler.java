@@ -36,7 +36,7 @@ public class QuorumRequestHandler implements MessageHandler {
 
 
             } catch (NumberFormatException e) {
-                AppConfig.timestampedErrorPrint("Got ask get with bad text: " + clientMessage.getMessageText());
+                AppConfig.timestampedErrorPrint("Got quorum request with bad text: " + clientMessage.getMessageText());
             }
 
         } else {

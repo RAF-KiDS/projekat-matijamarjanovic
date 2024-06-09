@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import app.AppConfig;
 import app.Cancellable;
+import app.failProof.BuddySystem;
 import cli.command.*;
 import servent.SimpleServentListener;
 

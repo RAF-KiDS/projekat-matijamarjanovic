@@ -62,7 +62,7 @@ public class FriendRequestHandler implements MessageHandler {
 
 
             } catch (NumberFormatException e) {
-                AppConfig.timestampedErrorPrint("Got ask get with bad text: " + clientMessage.getMessageText());
+                AppConfig.timestampedErrorPrint("Got friend request with bad text: " + clientMessage.getMessageText());
             }
 
         } else {

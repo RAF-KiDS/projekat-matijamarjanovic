@@ -1,5 +1,6 @@
 package app;
 
+import app.failProof.BuddySystem;
 import cli.CLIParser;
 import servent.SimpleServentListener;
 
@@ -48,6 +49,10 @@ public class ServentMain {
 		}
 		
 		AppConfig.timestampedStandardPrint("Starting servent " + AppConfig.myServentInfo);
+
+		BuddySystem buddySystem = BuddySystem.getInstance();
+		Thread buddyThread = new Thread(buddySystem);
+		buddyThread.start();
 		
 		SimpleServentListener simpleListener = new SimpleServentListener();
 		Thread listenerThread = new Thread(simpleListener);

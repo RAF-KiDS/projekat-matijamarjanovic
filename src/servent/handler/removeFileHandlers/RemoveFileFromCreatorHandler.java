@@ -26,7 +26,7 @@ public class RemoveFileFromCreatorHandler implements MessageHandler {
                 AppConfig.chordState.removeValueFromCreator(key);
 
             } catch (NumberFormatException e) {
-                AppConfig.timestampedErrorPrint("Got ask get with bad text: " + clientMessage.getMessageText());
+                AppConfig.timestampedErrorPrint("Got remove file from creator with bad text: " + clientMessage.getMessageText());
             }
 
         } else {

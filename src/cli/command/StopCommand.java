@@ -1,6 +1,7 @@
 package cli.command;
 
 import app.AppConfig;
+import app.failProof.BuddySystem;
 import cli.CLIParser;
 import servent.SimpleServentListener;
 
@@ -24,6 +25,7 @@ public class StopCommand implements CLICommand {
 		AppConfig.timestampedStandardPrint("Stopping...");
 		parser.stop();
 		listener.stop();
+		BuddySystem.getInstance().stop();
 	}
 
 }

@@ -45,7 +45,7 @@ public class RemoveFileHandler implements MessageHandler {
 
 
             } catch (NumberFormatException e) {
-                AppConfig.timestampedErrorPrint("Got ask get with bad text: " + clientMessage.getMessageText());
+                AppConfig.timestampedErrorPrint("Got remove file with bad text: " + clientMessage.getMessageText());
             }
 
         } else {
