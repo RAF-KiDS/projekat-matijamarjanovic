@@ -10,10 +10,7 @@ import java.util.concurrent.Executors;
 import app.AppConfig;
 import app.Cancellable;
 import servent.handler.*;
-import servent.handler.failProofHandlers.IsAliveHandler;
-import servent.handler.failProofHandlers.PingHandler;
-import servent.handler.failProofHandlers.PongHandler;
-import servent.handler.failProofHandlers.RemoveNodeHandler;
+import servent.handler.failProofHandlers.*;
 import servent.handler.friendRequestHandlers.FriendAcceptHandler;
 import servent.handler.friendRequestHandlers.FriendRequestHandler;
 import servent.handler.quorumHandlers.QuorumRequestHandler;
@@ -126,6 +123,9 @@ public class SimpleServentListener implements Runnable, Cancellable {
 					break;
 				case REMOVE_NODE:
 					messageHandler = new RemoveNodeHandler(clientMessage);
+					break;
+				case BACK_UP:
+					messageHandler = new BackUpHandler(clientMessage);
 					break;
 				case POISON:
 					break;

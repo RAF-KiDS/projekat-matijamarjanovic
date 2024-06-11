@@ -10,13 +10,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import cli.command.CLICommand;
+import servent.message.failProof.BackUpFoundTellMessage;
 import servent.message.*;
-import servent.message.failProof.RemoveNodeMessage;
 import servent.message.quorumMessages.QuorumRequestMessage;
 import servent.message.removeFile.RemoveFileFromCreatorMessage;
 import servent.message.removeFile.RemoveFileMessage;
 import servent.message.util.MessageUtil;
 import servent.model.ChordFile;
+import servent.message.failProof.SearchForBackUpMessage;
 
 /**
  * This class implements all the logic required for Chord to function.
@@ -54,6 +55,7 @@ public class ChordState {
 	
 	//we DO NOT use this to send messages, but only to construct the successor table
 	private List<ServentInfo> allNodeInfo;
+	private List<Integer> allNodeIdHistory;
 	private List<ServentInfo> quorum;
 	private Map<Integer, Object> valueMap;
 
@@ -61,6 +63,7 @@ public class ChordState {
 
 	private Map<Integer, Boolean> quorumResponses;
 
+	private Map<Integer, Map<Integer, Object>> backups;
 	//kada je true znaci da je prosla provera za kvorum, nakon izvrsavanja CS postavlja se na false do prolaska sledece provere
 	private AtomicBoolean checkCleared;
 
@@ -97,6 +100,8 @@ public class ChordState {
 		friendList = new CopyOnWriteArrayList<>();
 
 		myFiles = new HashMap<>();
+		backups = new ConcurrentHashMap<>();
+		allNodeIdHistory = new CopyOnWriteArrayList<>();
 	}
 	
 	/**
@@ -172,6 +177,10 @@ public class ChordState {
 		this.systemInConstruction.set(systemInConstruction);
 	}
 
+	public List<Integer> getAllNodeIDsHistory() {
+		return allNodeIdHistory;
+	}
+
 	public AtomicBoolean getSystemInConstruction() {
 		return systemInConstruction;
 	}
@@ -239,6 +248,13 @@ public class ChordState {
 				startInd++;
 				skip++;
 			}
+		}
+
+		//ignore - irelevant for this
+		for(ServentInfo serventInfo : allNodeInfo) {
+			if(!allNodeIdHistory.contains(serventInfo.getChordId()))
+				allNodeIdHistory.add(serventInfo.getChordId());
+
 		}
 		
 		int previousId = successorTable[startInd].getChordId();
@@ -339,7 +355,16 @@ public class ChordState {
 		}else{
 			return;
 		}
+
 		allNodeInfo.sort(Comparator.comparingInt(ServentInfo::getChordId));
+		if (predecessorInfo.getListenerPort() == predecessorPort) {
+			for(int i = 0; i < allNodeInfo.size() -1; i++){
+				if(allNodeInfo.get(i).getChordId() == AppConfig.myServentInfo.getChordId()){
+					predecessorInfo = allNodeInfo.get(i-1);
+					break;
+				}
+			}
+		}
 
 		List<ServentInfo> newList = new ArrayList<>();
 		List<ServentInfo> newList2 = new ArrayList<>();
@@ -683,6 +708,23 @@ public class ChordState {
 		return -2;
 	}
 
+	public void insertBackUp(Map<Integer, Object> values, int creatorId) {
+		backups.put(creatorId, values);
+	}
 
+	public void searchForBackup(int key, int whoAsked) {
+		if(backups.containsKey(key)){
+			AppConfig.timestampedStandardPrint("Backup found for key: " + key);
+			ServentInfo nextNode = getNextNodeForKey(key);
+			BackUpFoundTellMessage backUpFoundTellMessage = new BackUpFoundTellMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), backups.get(key), String.valueOf(whoAsked), key);
+			MessageUtil.sendMessage(backUpFoundTellMessage);
+			return;
+		}
+
+		//salji dalje
+		ServentInfo nextNode = getNextNodeForKey(key);
+		SearchForBackUpMessage searchForBackUpMessage = new SearchForBackUpMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(key), whoAsked);
+		MessageUtil.sendMessage(searchForBackUpMessage);
+	}
 
 }

@@ -47,9 +47,9 @@ public class BuddySystem implements Runnable{
         while (working) {
 
             //ako je sistem u izgradnji, nema prethodnika, nema sledbenika, nema stanja, nema sledeceg cvora
-            if(AppConfig.chordState.getSystemInConstruction().get()
+            if(AppConfig.chordState == null
                     ||  AppConfig.chordState.getPredecessor() == null
-                    || AppConfig.chordState == null
+                    || AppConfig.chordState.getSystemInConstruction().get()
                     || AppConfig.chordState.getSuccessorTable()[0] == null){
                 continue;
             }

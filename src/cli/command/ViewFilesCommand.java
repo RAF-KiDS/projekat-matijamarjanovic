@@ -1,7 +1,10 @@
 package cli.command;
 
 import app.AppConfig;
+import app.ChordState;
 import app.ServentInfo;
+import servent.message.MessageType;
+import servent.message.failProof.SearchForBackUpMessage;
 import servent.message.viewFiles.ViewFilesMessage;
 import servent.message.util.MessageUtil;
 import servent.model.ChordFile;
@@ -29,15 +32,28 @@ public class ViewFilesCommand implements CLICommand{
 
         try {
             String key = splitArgs[0];
+            int keyInt = AppConfig.chordState.getChordIdForAddressAndPort(key);
+
+            int hashedKey = ChordState.chordHash(Integer.parseInt(key.split(":")[1]));
 
             if(!AppConfig.chordState.nodeExists(key)){
-                AppConfig.timestampedErrorPrint("Node " + key + " does not exist in the system.");
+                AppConfig.timestampedStandardPrint("Node " + key + " does not exist in the system. Searching for backup...");
+                if(AppConfig.chordState.getAllNodeIDsHistory().contains(hashedKey)) {
+                    AppConfig.timestampedStandardPrint("Node " + key + " existed in the system.");
+
+                    ServentInfo nextNode = AppConfig.chordState.getNextNodeForKey(keyInt);
+                    SearchForBackUpMessage searchForBackUpMessage = new SearchForBackUpMessage(AppConfig.myServentInfo.getListenerPort(), nextNode.getListenerPort(), String.valueOf(hashedKey), AppConfig.myServentInfo.getChordId());
+                    MessageUtil.sendMessage(searchForBackUpMessage);
+                }else {
+                    AppConfig.timestampedStandardPrint("Node " + hashedKey + " did not exist in the system.");
+                }
+
                 AppConfig.chordState.releaseCriticalSection();
                 return;
             }
 
 
-            int keyInt = AppConfig.chordState.getChordIdForAddressAndPort(key);
+
 
             if(AppConfig.myServentInfo.getChordId() == keyInt){
                 if (AppConfig.chordState.getMyFiles().size() > 0){
