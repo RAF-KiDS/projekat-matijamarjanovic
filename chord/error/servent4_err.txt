@@ -1,9 +1,1 @@
-16:33:28 - Couldn't send message: [44|1180|31||PONG|1160|40]
-16:33:29 - Couldn't send message: [44|1180|32||ALIVE|1160|40]
-16:33:34 - HFT fail for: 1160
-16:33:34 - Couldn't send message: [44|1180|35||QUORUM_REQUEST|1160|40]
-16:33:38 - <<<<<<<<<<<<<Quorum request timed out. Retrying...
-Exception in thread "Thread-2" java.util.NoSuchElementException: No line found
-	at java.base/java.util.Scanner.nextLine(Scanner.java:1677)
-	at cli.CLIParser.run(CLIParser.java:58)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
+16:47:39 - HFT fail for: 1160

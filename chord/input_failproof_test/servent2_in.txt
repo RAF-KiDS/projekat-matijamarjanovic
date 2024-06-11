@@ -2,4 +2,4 @@ pause 20000
 add_file testThree.txt private
 remove_file test.txt
 pause 20000
-pause 20000
+pause 40000

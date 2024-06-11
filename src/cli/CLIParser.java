@@ -2,6 +2,7 @@ package cli;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import app.AppConfig;
@@ -55,7 +56,13 @@ public class CLIParser implements Runnable, Cancellable {
 		Scanner sc = new Scanner(System.in);
 		
 		while (working) {
-			String commandLine = sc.nextLine();
+			String commandLine = null;
+			try {
+				commandLine = sc.nextLine();
+			}catch (NoSuchElementException e){
+				stop();
+				continue;
+			}
 			
 			int spacePos = commandLine.indexOf(" ");
 			
